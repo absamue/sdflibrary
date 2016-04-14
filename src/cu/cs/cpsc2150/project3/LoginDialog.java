@@ -6,15 +6,18 @@ import java.awt.event.*;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
-public class LoginFrame extends JFrame {
+public class LoginDialog extends JDialog {
+	private Account acc;
 	
-	public LoginFrame(String title){
-		super(title);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
+	public LoginDialog(Frame parent){
+		super(parent, "Login", true);
+		this.initialize();
 	}
 	
 	public void initialize(){
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.setAlwaysOnTop(true);
 		this.setSize(300, 150);
 		
 		//grid panel
@@ -39,7 +42,8 @@ public class LoginFrame extends JFrame {
 			public void actionPerformed(ActionEvent e){
 				//get associated account from userData and compare password
 				if(AccountData.verify(userText.getText(), new String(passwordText.getPassword()))){
-					JOptionPane.showMessageDialog(panel, "success");
+					LoginDialog.this.acc = AccountData.getUser(userText.getText());
+					LoginDialog.this.setVisible(false);
 				}
 				else{
 					JOptionPane.showMessageDialog(panel, "Login error");
@@ -61,9 +65,13 @@ public class LoginFrame extends JFrame {
 		this.add(panel);
 		
 		//open in center of screen
-		//Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		//this.setLocation(dimension.width/2-this.getSize().width/2, dimension.height/2-this.getSize().height/2);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dimension.width/2-this.getSize().width/2, dimension.height/2-this.getSize().height/2);
 
 		this.setVisible(true);
+	}
+	
+	public Account getAccount(){
+		return acc;
 	}
 }

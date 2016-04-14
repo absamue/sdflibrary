@@ -32,7 +32,7 @@ public class AccountData {
 	}
 
 	// return account of requested user
-	public Account getUser(String username) {
+	public static Account getUser(String username) {
 		return userData.get(username);
 	}
 

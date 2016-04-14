@@ -1,5 +1,6 @@
 package cu.cs.cpsc2150.project3;
 
+@SuppressWarnings("serial")
 public class Account implements java.io.Serializable{
 	String username;
 	String password;

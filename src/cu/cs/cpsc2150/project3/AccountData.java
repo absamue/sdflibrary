@@ -63,4 +63,8 @@ public class AccountData {
 			e.printStackTrace();
 		}
 	}
+	
+	public void clearData(){
+		userData.clear();
+	}
 }

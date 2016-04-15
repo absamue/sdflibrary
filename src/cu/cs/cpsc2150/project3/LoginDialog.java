@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
 public class LoginDialog extends JDialog {
@@ -21,7 +22,8 @@ public class LoginDialog extends JDialog {
 		this.setSize(300, 150);
 		
 		//grid panel
-		JPanel panel = new JPanel(new GridLayout(3,2));
+		JPanel panel = new JPanel(new GridLayout(3,2, 5,5));
+		panel.setBorder(new EmptyBorder(5,5,5,5));
 		
 		//username field
 		JLabel userLabel = new JLabel("User", SwingConstants.CENTER);
@@ -46,10 +48,12 @@ public class LoginDialog extends JDialog {
 					LoginDialog.this.setVisible(false);
 				}
 				else{
-					JOptionPane.showMessageDialog(panel, "Login error");
+					JOptionPane.showMessageDialog(panel, "Incorrect username or password.");
 				}
 			}
 		});
+		//enter to hit login
+		this.getRootPane().setDefaultButton(login);
 		panel.add(login);
 	
 		//cancel button to exit program
@@ -60,6 +64,8 @@ public class LoginDialog extends JDialog {
 			}
 		});
 		panel.add(cancel);
+		
+		
 		
 		
 		this.add(panel);

@@ -26,7 +26,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	public void initialize(){
-		this.setSize(1000, 700);
+		this.setSize(800, 500);
 		this.setLocationRelativeTo(null);
 		
 		this.setLayout(new BorderLayout());
@@ -41,7 +41,7 @@ public class MainFrame extends JFrame {
 		
 		//Catalog tab
 		JTabbedPane tabbedPane = new JTabbedPane();
-		JPanel catalogPanel = new JPanel();
+		CatalogPanel catalogPanel = new CatalogPanel();
 		tabbedPane.addTab("Catalog", catalogPanel);
 		
 		

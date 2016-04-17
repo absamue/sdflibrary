@@ -25,15 +25,24 @@ public class MainFrame extends JFrame {
 		MainFrame.activeUser = login.getAccount();
 		this.initialize();
 	}
+<<<<<<< HEAD
 
 	public void initialize() {
+=======
+	
+	public void initialize(){
+>>>>>>> main-window
 		this.setSize(800, 500);
 		this.setLocationRelativeTo(null);
 		this.setLayout(new BorderLayout());
 
 		// Catalog tab
 		JTabbedPane tabbedPane = new JTabbedPane();
+<<<<<<< HEAD
 		catalogPanel = new CatalogPanel(this);
+=======
+		CatalogPanel catalogPanel = new CatalogPanel();
+>>>>>>> main-window
 		tabbedPane.addTab("Catalog", catalogPanel);
 
 		// Accounts tab

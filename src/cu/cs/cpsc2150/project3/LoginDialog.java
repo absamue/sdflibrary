@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
 public class LoginDialog extends JDialog {
@@ -16,12 +17,13 @@ public class LoginDialog extends JDialog {
 	
 	public void initialize(){
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		this.setLocationRelativeTo(null);
 		this.setAlwaysOnTop(true);
 		this.setSize(300, 150);
+		this.setLocationRelativeTo(null);
 		
 		//grid panel
-		JPanel panel = new JPanel(new GridLayout(3,2));
+		JPanel panel = new JPanel(new GridLayout(3,2,10,10));
+		panel.setBorder(new EmptyBorder(5,5,5,5));
 		
 		//username field
 		JLabel userLabel = new JLabel("User", SwingConstants.CENTER);
@@ -50,6 +52,7 @@ public class LoginDialog extends JDialog {
 				}
 			}
 		});
+		this.getRootPane().setDefaultButton(login);
 		panel.add(login);
 	
 		//cancel button to exit program
@@ -61,12 +64,7 @@ public class LoginDialog extends JDialog {
 		});
 		panel.add(cancel);
 		
-		
 		this.add(panel);
-		
-		//open in center of screen
-		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dimension.width/2-this.getSize().width/2, dimension.height/2-this.getSize().height/2);
 
 		this.setVisible(true);
 	}

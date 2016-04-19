@@ -11,13 +11,15 @@ import javax.swing.*;
 public class CatalogPanel extends JPanel {
 	
 	BookDialog bookDialog;
-	JTable table;
+	static JTable table;
 	
 	public CatalogPanel(Frame parent){
 		this.setLayout(new BorderLayout());
 		
 		//make a table from the catalog info, and add to a scrollpanel
 		table = new JTable(new CatalogTableModel());
+		table.setRowSelectionAllowed(true);
+		table.setColumnSelectionAllowed(false);
 		//listen for doubleclick to open book window
 		table.addMouseListener(new MouseListener(){
 
@@ -25,8 +27,12 @@ public class CatalogPanel extends JPanel {
 			public void mouseClicked(MouseEvent arg0) {
 				if(arg0.getClickCount() == 2){
 					//get selected book
-					Book sel = CatalogTableModel.getCatalog().getBook(table.getSelectedRow());
-					bookDialog = new BookDialog(parent, sel);
+					int row = table.rowAtPoint(arg0.getPoint());
+					if(row != -1){
+						Book sel = CatalogTableModel.getCatalog().getBook(row);
+						bookDialog = new BookDialog(parent, sel);
+						CatalogPanel.this.revalidate();
+					}
 				}
 			}
 
@@ -61,9 +67,9 @@ public class CatalogPanel extends JPanel {
 	}
 	
 	//data somehwere in the table changed, so refresh
-	public void update(){
-		((CatalogTableModel) table.getModel()).fireTableChanged(null);
-
+	public static void update(){
+		((CatalogTableModel) table.getModel()).fireTableDataChanged();
+		
 	}
 	
 	

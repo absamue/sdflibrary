@@ -58,7 +58,7 @@ public class NewBookDialog extends JDialog {
 				CatalogTableModel.getCatalog().putBook(newBook);
 			
 				//redraw catalog panel
-				MainFrame.catalogPanel.update();
+				CatalogPanel.update();
 				NewBookDialog.this.setVisible(false);
 				
 			}	
@@ -76,6 +76,5 @@ public class NewBookDialog extends JDialog {
 		panel.add(cancel);
 		this.add(panel);
 		
-		this.setVisible(true);
 	}
 }

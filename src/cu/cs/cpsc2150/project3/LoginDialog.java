@@ -22,11 +22,8 @@ public class LoginDialog extends JDialog {
 		this.setLocationRelativeTo(null);
 		
 		//grid panel
-<<<<<<< HEAD
+
 		JPanel panel = new JPanel(new GridLayout(3,2,10,10));
-=======
-		JPanel panel = new JPanel(new GridLayout(3,2, 5,5));
->>>>>>> main-window
 		panel.setBorder(new EmptyBorder(5,5,5,5));
 		
 		//username field
@@ -50,16 +47,16 @@ public class LoginDialog extends JDialog {
 				if(AccountData.verify(userText.getText(), new String(passwordText.getPassword()))){
 					LoginDialog.this.acc = AccountData.getUser(userText.getText());
 					LoginDialog.this.setVisible(false);
+					userText.setText(null);
+					passwordText.setText(null);
 				}
 				else{
 					JOptionPane.showMessageDialog(panel, "Incorrect username or password.");
 				}
 			}
 		});
-<<<<<<< HEAD
-=======
 		//enter to hit login
->>>>>>> main-window
+
 		this.getRootPane().setDefaultButton(login);
 		panel.add(login);
 	
@@ -72,12 +69,6 @@ public class LoginDialog extends JDialog {
 		});
 		panel.add(cancel);
 		
-<<<<<<< HEAD
-=======
-		
-		
-		
->>>>>>> main-window
 		this.add(panel);
 
 		this.setVisible(true);

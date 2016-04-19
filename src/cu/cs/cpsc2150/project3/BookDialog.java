@@ -15,12 +15,10 @@ import javax.swing.border.EmptyBorder;
 @SuppressWarnings("serial")
 public class BookDialog extends JDialog {
 
-	private Frame myParent;
 	private Book myBook;
 
 	public BookDialog(Frame parent, Book selection) {
 		super(parent, "Book info", true);
-		myParent = parent;
 		myBook = selection;
 		this.initialize();
 	}
@@ -79,7 +77,7 @@ public class BookDialog extends JDialog {
 				public void actionPerformed(ActionEvent arg0) {
 					CatalogTableModel.getCatalog().removeBook(myBook);
 					BookDialog.this.setVisible(false);
-					MainFrame.catalogPanel.update();
+					CatalogPanel.update();
 				}
 			});
 
@@ -89,7 +87,7 @@ public class BookDialog extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					Book upd = new Book(title.getText(), author.getText(), genre.getText(), tags.getText());
 					CatalogTableModel.getCatalog().updateBook(myBook, upd);
-					MainFrame.catalogPanel.update();
+					CatalogPanel.update();
 					BookDialog.this.setVisible(false);
 				}
 			});

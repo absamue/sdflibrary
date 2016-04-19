@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class CatalogData {
 	
-	private ArrayList<Book> catalogData;
+	public ArrayList<Book> catalogData;
 	
 	@SuppressWarnings("unchecked")
 	public CatalogData(){

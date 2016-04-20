@@ -60,6 +60,11 @@ public class NewBookDialog extends JDialog {
 				//redraw catalog panel
 				CatalogPanel.update();
 				NewBookDialog.this.setVisible(false);
+				//clear fields
+				titleText.setText("");
+				authorText.setText("");
+				genreText.setText("");
+				tagsText.setText("");
 				
 			}	
 		});
@@ -70,6 +75,11 @@ public class NewBookDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				NewBookDialog.this.setVisible(false);
+				//clear fields
+				titleText.setText("");
+				authorText.setText("");
+				genreText.setText("");
+				tagsText.setText("");
 			}
 			
 		});

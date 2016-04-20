@@ -74,8 +74,6 @@ public class MainFrame extends JFrame {
 			
 		}
 
-		JButton check = new JButton("Checkout");
-		userPanel.add(check);
 
 		// logout button
 		JButton logout = new JButton("Logout");

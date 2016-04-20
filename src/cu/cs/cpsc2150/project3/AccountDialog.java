@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 @SuppressWarnings("serial")
 public class AccountDialog extends JDialog {
 	private Account myAccount;
+	String[] staffOpt = {"Staff", "Member"};
 
 	public AccountDialog(Frame parent, Account selection) {
 		super(parent, "Account info", true);
@@ -24,6 +26,7 @@ public class AccountDialog extends JDialog {
 		this.initialize();
 	}
 
+	@SuppressWarnings("unchecked")
 	public void initialize() {
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		this.setSize(300, 300);
@@ -52,7 +55,8 @@ public class AccountDialog extends JDialog {
 		// CHANGE THIS TO DROP DOWN LIST
 		JLabel type = new JLabel("Type:", SwingConstants.CENTER);
 		panel.add(type);
-		JTextField typeText = new JTextField(myAccount.myType);
+		@SuppressWarnings("rawtypes")
+		JComboBox typeText = new JComboBox(staffOpt);
 		if (!MainFrame.activeUser.staff)
 			typeText.setEditable(false);
 		panel.add(typeText);
@@ -87,7 +91,7 @@ public class AccountDialog extends JDialog {
 		update.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Account nw = new Account(unameText.getText(), pwordText.getText(), typeText.getText(),
+				Account nw = new Account(unameText.getText(), pwordText.getText(), (String) typeText.getSelectedItem(),
 						nameText.getText(), emailText.getText(), phoneText.getText(), myAccount.myId);
 				//no blank passwords allowed, for obvious security reasons
 				if (nw.myPassword.isEmpty()) {

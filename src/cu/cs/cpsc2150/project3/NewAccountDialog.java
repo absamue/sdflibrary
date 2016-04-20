@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
 public class NewAccountDialog extends JDialog {
-
+	String[] staffOpt = {"Staff", "Member"};
 	Frame myParent;
 
 	public NewAccountDialog(Frame parent) {
@@ -25,6 +26,7 @@ public class NewAccountDialog extends JDialog {
 		this.initialize();
 	}
 
+	@SuppressWarnings("unchecked")
 	public void initialize() {
 		this.setSize(300, 300);
 		this.setLocationRelativeTo(null);
@@ -49,7 +51,9 @@ public class NewAccountDialog extends JDialog {
 		// CHANGE THIS TO DROP DOWN LIST
 		JLabel type = new JLabel("Type:", SwingConstants.CENTER);
 		panel.add(type);
-		JTextField typeText = new JTextField();
+//		JTextField typeText = new JTextField();
+		@SuppressWarnings("rawtypes")
+		JComboBox typeText = new JComboBox(staffOpt);
 		panel.add(typeText);
 		// CHANGE ME
 
@@ -76,7 +80,7 @@ public class NewAccountDialog extends JDialog {
 		add.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Account nw = new Account(unameText.getText(), pwordText.getText(), typeText.getText(),
+				Account nw = new Account(unameText.getText(), pwordText.getText(), (String) typeText.getSelectedItem(),
 						nameText.getText(), emailText.getText(), phoneText.getText(), 999);
 				//check password field
 				if (nw.myPassword.isEmpty()) {
@@ -87,6 +91,12 @@ public class NewAccountDialog extends JDialog {
 						MainFrame.userData.addUser(nw);
 						AccountPanel.update();
 						NewAccountDialog.this.setVisible(false);
+						//remove all text fields for next open
+						unameText.setText("");
+						pwordText.setText("");
+						nameText.setText("");
+						emailText.setText("");
+						phoneText.setText("");
 
 					} else {
 						JOptionPane.showMessageDialog(NewAccountDialog.this, "Account with username already exists.");
@@ -102,6 +112,13 @@ public class NewAccountDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				NewAccountDialog.this.setVisible(false);
+				//remove all text fields for next open
+				unameText.setText("");
+				pwordText.setText("");
+				nameText.setText("");
+				emailText.setText("");
+				phoneText.setText("");
+				
 			}
 		});
 

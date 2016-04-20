@@ -64,6 +64,9 @@ public class CatalogPanel extends JPanel {
 		JScrollPane sPane = new JScrollPane(table);
 		this.add(sPane);	
 		
+		JButton checkOut = new JButton("Check out");
+		this.add(checkOut, BorderLayout.SOUTH);
+		
 	}
 	
 	//data somehwere in the table changed, so refresh

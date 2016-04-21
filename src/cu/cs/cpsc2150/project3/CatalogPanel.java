@@ -2,6 +2,8 @@ package cu.cs.cpsc2150.project3;
 
 import java.awt.BorderLayout;
 import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -65,6 +67,19 @@ public class CatalogPanel extends JPanel {
 		this.add(sPane);	
 		
 		JButton checkOut = new JButton("Check out");
+		checkOut.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int book = table.getSelectedRow();
+				if(book != -1){
+				Book sel = CatalogTableModel.catalog.getBook(book);
+				CheckoutFrame check = new CheckoutFrame(sel);
+				}
+				else{
+					JOptionPane.showMessageDialog(CatalogPanel.this, "Please select a book from the catalog table to checkout.");
+				}
+			}
+		});
 		this.add(checkOut, BorderLayout.SOUTH);
 		
 	}

@@ -39,14 +39,11 @@ public class MainFrame extends JFrame {
 		this.add(catalogPanel);
 	
 		//buttons for different actions, dependent on loggin in user
-	//	JPanel userPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 5));
 		JPanel sidePanel = new JPanel(new BorderLayout());
 		sidePanel.setBorder(new EmptyBorder(10,10,10,10));
 		sidePanel.setPreferredSize(new Dimension(150, 500));
 		JPanel userPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 15));
 		JPanel loginPanel = new JPanel(new GridLayout(2,1,10,10));
-	//	userPanel.setPreferredSize(new Dimension(125, 500));
-//		userPanel.setBorder(new EmptyBorder(15,15,15,15));
 
 		// active user info
 		JLabel user = new JLabel("Active user: " + activeUser.myUsername, SwingConstants.CENTER);

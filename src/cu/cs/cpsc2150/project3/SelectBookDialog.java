@@ -36,7 +36,12 @@ public class SelectBookDialog extends JDialog {
 				int row = table.getSelectedRow();
 				if(row != -1){
 					 sel = CatalogTableModel.getCatalog().getBook(row);
+					 if(sel.checkedOut){
+						 JOptionPane.showMessageDialog(SelectBookDialog.this, "You cannot select a book that is checked out.");
+					 }
+					 else{
 					 SelectBookDialog.this.setVisible(false);
+					 }
 				}	
 				else{
 					JOptionPane.showMessageDialog(SelectBookDialog.this, "Please select a row from the list");

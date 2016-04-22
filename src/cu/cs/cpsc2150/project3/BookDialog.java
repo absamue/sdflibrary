@@ -86,6 +86,8 @@ public class BookDialog extends JDialog {
 					CatalogPanel.update();
 				}
 			});
+			if(myBook.checkedOut)
+				remBook.setEnabled(false);
 
 			JButton update = new JButton("Update");
 			update.addActionListener(new ActionListener() {

@@ -16,5 +16,13 @@ public class Book implements java.io.Serializable{
 		myGenre = genre;
 		myTags = tag;
 	}
+	
+	public Book(Book clone){
+		myTitle = clone.myTitle;
+		myAuthors = clone.myAuthors;
+		myGenre = clone.myGenre;
+		myTags = clone.myTags;
+		checkedOut = clone.checkedOut;
+	}
 
 }

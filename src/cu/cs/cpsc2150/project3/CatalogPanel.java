@@ -70,14 +70,14 @@ public class CatalogPanel extends JPanel {
 		checkOut.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int book = table.getSelectedRow();
-				if(book != -1){
-				Book sel = CatalogTableModel.catalog.getBook(book);
-				CheckoutFrame check = new CheckoutFrame(sel);
-				}
+		//		int book = table.getSelectedRow();
+			//	if(book != -1){
+		//		Book sel = CatalogTableModel.catalog.getBook(book);
+				CheckoutFrame check = new CheckoutFrame(null);
+		/*		}
 				else{
 					JOptionPane.showMessageDialog(CatalogPanel.this, "Please select a book from the catalog table to checkout.");
-				}
+				}*/
 			}
 		});
 		this.add(checkOut, BorderLayout.SOUTH);

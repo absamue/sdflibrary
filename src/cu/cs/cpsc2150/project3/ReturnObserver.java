@@ -14,7 +14,7 @@ public class ReturnObserver implements Observer {
 	@Override
 	public void doNotify() {
 		//update book to be marked as available
-		Book nw = myBook;
+		Book nw = new Book(myBook);
 		nw.checkedOut = false;
 		CatalogTableModel.catalog.updateBook(myBook, nw);
 		

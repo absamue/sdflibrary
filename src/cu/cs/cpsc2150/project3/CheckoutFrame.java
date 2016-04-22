@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,6 +27,9 @@ public class CheckoutFrame extends JFrame {
 	public static JTable user;
 	public static JTable select;
 	private SelectBookDialog selectDialog;
+	
+	private ArrayList<Book> cancelBooks = new ArrayList<Book>();
+	private ArrayList<Observer> cancelObs = new ArrayList<Observer>();
 	
 	public CheckoutFrame(Book sel){
 		super("Checkout");
@@ -55,13 +59,7 @@ public class CheckoutFrame extends JFrame {
 				return;
 			}
 		}
-		
-		//add an observer of selected book
-/*		else{
-			myCart.obs.registerObserver(new CheckoutObserver(myBook, myUser));
-			myCart.cartBooks.add(myBook);
-		}
-*/		
+			
 		//panel to show description
 		JPanel infoPanel = new JPanel(new GridLayout(2,2,5,30));
 		infoPanel.setBorder(new EmptyBorder(15,5,0,5));
@@ -85,18 +83,26 @@ public class CheckoutFrame extends JFrame {
 		JPanel panel = new JPanel(new GridLayout(1,2,5,5));
 		panel.setBorder(new EmptyBorder(5,5,5,5));
 		
+		//make a table contained of myUser's checked out books
 		user = new JTable(new CheckedTableModel(myUser));
 		user.addMouseListener(new MouseListener(){
 
+			//add selected book into the action table to be returned
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(e.getClickCount() == 2){
 					int row = user.rowAtPoint(e.getPoint());
 					if(row != -1){
+						//get the book
 						Book sel = myUser.checkedOut.get(row);
 						myUser.checkedOut.remove(sel);
+						cancelBooks.add(sel);		//list of books to add back to user if cancelled
 						myCart.cartBooks.add(sel);
-						myCart.obs.registerObserver(new ReturnObserver(sel, myUser));
+						
+						//observer for checkout action
+						ReturnObserver reg = new ReturnObserver(sel, myUser);
+						myCart.obs.registerObserver(reg);
+						cancelObs.add(reg);
 						CheckoutFrame.this.updateTables();
 					}
 				}
@@ -119,6 +125,7 @@ public class CheckoutFrame extends JFrame {
 		JScrollPane left = new JScrollPane(user);
 		panel.add(left);			
 		
+		//table to hold action items
 		select = new JTable(new ActionTableModel());
 		JScrollPane right = new JScrollPane(select);
 		panel.add(right);
@@ -129,6 +136,8 @@ public class CheckoutFrame extends JFrame {
 		JPanel buttonPanel = new JPanel(new GridLayout(1,3,5,5));
 		buttonPanel.setBorder(new EmptyBorder(0,5,5,5));
 		
+		
+		//checkout button, simply notifys the cart
 		JButton checkOut = new JButton("Check Out");
 		checkOut.addActionListener(new ActionListener(){
 			@Override
@@ -140,6 +149,8 @@ public class CheckoutFrame extends JFrame {
 		});
 		buttonPanel.add(checkOut);
 		
+		
+		//open a frame containing the catalog, that allows selecting a book to check out
 		JButton addBook = new JButton("Add Book");
 		addBook.addActionListener(new ActionListener(){
 			@Override
@@ -159,6 +170,19 @@ public class CheckoutFrame extends JFrame {
 		cancel.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//add all books from action table back to user
+				for(Book bk : cancelBooks){
+					myUser.checkedOut.add(bk);
+					myCart.cartBooks.remove(bk);
+				}
+				cancelBooks.clear();
+			
+				//cancel all the observers so none of them fire at later transaction
+				myCart.obs.unregisterAll();
+				//update tables so that items are in right place
+				CheckoutFrame.this.updateTables();
+				
+				
 				CheckoutFrame.this.setVisible(false);
 			}
 		});
@@ -167,11 +191,10 @@ public class CheckoutFrame extends JFrame {
 		
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		
-		
-		
 		this.setVisible(true);
 	}
 	
+	//update both of the tables, since they are 
 	public void updateTables(){
 		((CheckedTableModel) user.getModel()).fireTableDataChanged();
 		((ActionTableModel) select.getModel()).fireTableDataChanged();

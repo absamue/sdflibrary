@@ -19,10 +19,10 @@ public class CheckoutObserver implements Observer {
 		
 		//add book to user's checked out list
 		myAccount.checkedOut.add(myBook);
-		MainFrame.userData.save();
 		
 		//update catalog
 		CatalogPanel.update();
+		CatalogTableModel.catalog.save();
 	}
 
 }

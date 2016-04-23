@@ -8,6 +8,7 @@ public class Book implements java.io.Serializable{
 	String myGenre;
 	String myTags;
 	boolean checkedOut;
+
 	
 	public Book(String title, String author, String genre, String tag){
 		checkedOut = false;

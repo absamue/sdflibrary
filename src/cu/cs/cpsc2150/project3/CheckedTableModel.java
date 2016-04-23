@@ -21,6 +21,7 @@ public class CheckedTableModel extends AbstractTableModel {
 	@Override
 	public int getRowCount() {
 		return myAccount.checkedOut.size();
+	
 	}
 
 	@Override

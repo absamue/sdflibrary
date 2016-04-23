@@ -29,27 +29,25 @@ public class CheckoutFrame extends JFrame {
 	private SelectBookDialog selectDialog;
 	
 	private ArrayList<Book> cancelBooks = new ArrayList<Book>();
-	private ArrayList<Observer> cancelObs = new ArrayList<Observer>();
 	
-	public CheckoutFrame(Book sel){
+	public CheckoutFrame(){
 		super("Checkout");
 		this.setSize(800,500);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
-		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		
 		
-		myBook = sel;
+		myBook = null;
 		myCart = new Cart();
 		myUser = MainFrame.activeUser;
 		selUser = new SelectUserDialog(this);
 		selectDialog = new SelectBookDialog(this);
 		
-		this.initialize();
 	}
 	
 	public void initialize(){
-		
+		myUser = MainFrame.activeUser;
 		//check if account is logged in, and ask them to give a member id
 		if(myUser.staff){
 			selUser.initialize();
@@ -94,15 +92,14 @@ public class CheckoutFrame extends JFrame {
 					int row = user.rowAtPoint(e.getPoint());
 					if(row != -1){
 						//get the book
-						Book sel = myUser.checkedOut.get(row);
-						myUser.checkedOut.remove(sel);
+						Book sel = myUser.checkedOut.remove(row);
 						cancelBooks.add(sel);		//list of books to add back to user if cancelled
 						myCart.cartBooks.add(sel);
 						
 						//observer for checkout action
 						ReturnObserver reg = new ReturnObserver(sel, myUser);
 						myCart.obs.registerObserver(reg);
-						cancelObs.add(reg);
+						
 						CheckoutFrame.this.updateTables();
 					}
 				}
@@ -145,6 +142,7 @@ public class CheckoutFrame extends JFrame {
 				//notify cart of checkout, update data
 				myCart.checkout();
 				CheckoutFrame.this.updateTables();
+				cancelBooks.clear();
 			}
 		});
 		buttonPanel.add(checkOut);
@@ -172,10 +170,10 @@ public class CheckoutFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//add all books from action table back to user
 				for(Book bk : cancelBooks){
-					myUser.checkedOut.add(bk);
-					myCart.cartBooks.remove(bk);
+					myUser.addBook(bk);
 				}
 				cancelBooks.clear();
+				myCart.cartBooks.clear();
 			
 				//cancel all the observers so none of them fire at later transaction
 				myCart.obs.unregisterAll();
@@ -184,6 +182,7 @@ public class CheckoutFrame extends JFrame {
 				
 				
 				CheckoutFrame.this.setVisible(false);
+				CheckoutFrame.this.getContentPane().removeAll();
 			}
 		});
 		buttonPanel.add(cancel);

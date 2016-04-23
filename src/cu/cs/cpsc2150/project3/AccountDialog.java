@@ -80,21 +80,21 @@ public class AccountDialog extends JDialog {
 		update.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				//build an account from fields, and send it to the validifer
 				Account nw = new Account(unameText.getText(), pwordText.getText(), (String) typeText.getSelectedItem(),
 						nameText.getText(), emailText.getText(), phoneText.getText(), myAccount.myId);
-				//no blank passwords allowed, for obvious security reasons
-				if (nw.myPassword.isEmpty()) {
-					JOptionPane.showMessageDialog(AccountDialog.this, "Password field cannot be blank.");
-				} else {
-					if (nw.myUsername.equals(myAccount.myUsername) || MainFrame.userData.checkUser(nw.myUsername)) {
-						MainFrame.userData.update(myAccount, nw);
-						AccountPanel.update();
-						AccountDialog.this.setVisible(false);
-
-					} else {
-						JOptionPane.showMessageDialog(AccountDialog.this, "Account with username already exists.");
-					}
+				AccountValidifier check = new AccountValidifier(nw, myAccount);
+			
+				//if validation succeeds, update the account. otherwise show error at failed test
+				if(check.validate()){
+					MainFrame.userData.update(myAccount, nw);
+					AccountPanel.update();
+					AccountDialog.this.setVisible(false);
 				}
+				else{
+					JOptionPane.showMessageDialog(AccountDialog.this, check.error);
+				}
+				
 			}
 		});
 		// admin doesnt need to change anything, dont want to lock ourselves out

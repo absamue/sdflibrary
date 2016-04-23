@@ -18,10 +18,12 @@ public class ReturnObserver implements Observer {
 		nw.checkedOut = false;
 		CatalogTableModel.catalog.updateBook(myBook, nw);
 		
-		MainFrame.userData.save();
+//		myAccount.remBook(myBook);
+//		MainFrame.userData.update(myAccount, myAccount);
 		
 		//update catalog
 		CatalogPanel.update();
+		CatalogTableModel.catalog.save();
 	}
 
 }

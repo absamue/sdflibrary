@@ -80,27 +80,25 @@ public class NewAccountDialog extends JDialog {
 		add.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				//make a new account and validifier from fields
 				Account nw = new Account(unameText.getText(), pwordText.getText(), (String) typeText.getSelectedItem(),
 						nameText.getText(), emailText.getText(), phoneText.getText(), 999);
-				//check password field
-				if (nw.myPassword.isEmpty()) {
-					JOptionPane.showMessageDialog(NewAccountDialog.this, "Password field cannot be blank.");
-				} else {
-					// make sure not overlapping usernames
-					if (MainFrame.userData.checkUser(nw.myUsername)) {
-						MainFrame.userData.addUser(nw);
-						AccountPanel.update();
-						NewAccountDialog.this.setVisible(false);
-						//remove all text fields for next open
-						unameText.setText("");
-						pwordText.setText("");
-						nameText.setText("");
-						emailText.setText("");
-						phoneText.setText("");
-
-					} else {
-						JOptionPane.showMessageDialog(NewAccountDialog.this, "Account with username already exists.");
-					}
+				AccountValidifier check = new AccountValidifier(nw, null);
+				
+				//validate info. update if successful otherwise show relevant error
+				if(check.validate()){
+					MainFrame.userData.addUser(nw);
+					AccountPanel.update();
+					NewAccountDialog.this.setVisible(false);
+					//remove all text fields for next open
+					unameText.setText("");
+					pwordText.setText("");
+					nameText.setText("");
+					emailText.setText("");
+					phoneText.setText("");
+				}
+				else{
+					JOptionPane.showMessageDialog(NewAccountDialog.this, check.error);
 				}
 			}
 		});

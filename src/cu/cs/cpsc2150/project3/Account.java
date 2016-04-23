@@ -1,5 +1,7 @@
 package cu.cs.cpsc2150.project3;
 
+import java.util.ArrayList;
+
 @SuppressWarnings("serial")
 public class Account implements java.io.Serializable{
 	String myUsername;
@@ -10,6 +12,8 @@ public class Account implements java.io.Serializable{
 	String myPhone;
 	boolean staff;
 	int myId;
+	
+	ArrayList<Book> checkedOut;
 	
 	public Account(String uname, String pword, String type, String name, String email, String phone, int id){
 		this.myUsername = uname;
@@ -22,6 +26,16 @@ public class Account implements java.io.Serializable{
 		
 		if(type.equals("Staff"))
 			this.staff = true;
+		
+		checkedOut  = new ArrayList<Book>();
+	}
+	
+	public void addBook(Book in){
+		checkedOut.add(in);
+	}
+	
+	public void remBook(Book out){
+		checkedOut.remove(out);
 	}
 	
 }

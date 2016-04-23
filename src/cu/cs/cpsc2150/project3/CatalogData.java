@@ -69,4 +69,15 @@ public class CatalogData {
 	public int getSize(){
 		return catalogData.size();
 	}
+	
+	//return true if the given book's title is in the catalog
+	public boolean checkTitle(Book in){
+		boolean check = false;
+		for(Book bk : catalogData){
+			if(bk.myTitle.equals(in.myTitle))
+					check = true;
+		}
+		
+		return check;
+	}
 }

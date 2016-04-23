@@ -8,6 +8,7 @@ public class Book implements java.io.Serializable{
 	String myGenre;
 	String myTags;
 	boolean checkedOut;
+
 	
 	public Book(String title, String author, String genre, String tag){
 		checkedOut = false;
@@ -15,6 +16,14 @@ public class Book implements java.io.Serializable{
 		myAuthors = author;	
 		myGenre = genre;
 		myTags = tag;
+	}
+	
+	public Book(Book clone){
+		myTitle = clone.myTitle;
+		myAuthors = clone.myAuthors;
+		myGenre = clone.myGenre;
+		myTags = clone.myTags;
+		checkedOut = clone.checkedOut;
 	}
 
 }

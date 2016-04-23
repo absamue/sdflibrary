@@ -40,50 +40,39 @@ public class AccountDialog extends JDialog {
 		JLabel uname = new JLabel("Username:", SwingConstants.CENTER);
 		panel.add(uname);
 		JTextField unameText = new JTextField(myAccount.myUsername);
-		if (!MainFrame.activeUser.staff)
-			unameText.setEditable(false);
 		panel.add(unameText);
 
 		// password
 		JLabel pword = new JLabel("Password:", SwingConstants.CENTER);
 		panel.add(pword);
 		JTextField pwordText = new JTextField(myAccount.myPassword);
-		if (!MainFrame.activeUser.staff)
-			pwordText.setEditable(false);
 		panel.add(pwordText);
 
-		// CHANGE THIS TO DROP DOWN LIST
+		//account type
 		JLabel type = new JLabel("Type:", SwingConstants.CENTER);
 		panel.add(type);
 		@SuppressWarnings("rawtypes")
 		JComboBox typeText = new JComboBox(staffOpt);
-		if (!MainFrame.activeUser.staff)
-			typeText.setEditable(false);
+		if(!myAccount.staff)
+			typeText.setSelectedIndex(1);
 		panel.add(typeText);
-		// CHANGE ME
 
 		// name
 		JLabel name = new JLabel("Name:", SwingConstants.CENTER);
 		panel.add(name);
 		JTextField nameText = new JTextField(myAccount.myName);
-		if (!MainFrame.activeUser.staff)
-			nameText.setEditable(false);
 		panel.add(nameText);
 
 		// email
 		JLabel email = new JLabel("Email:", SwingConstants.CENTER);
 		panel.add(email);
 		JTextField emailText = new JTextField(myAccount.myEmail);
-		if (!MainFrame.activeUser.staff)
-			emailText.setEditable(false);
 		panel.add(emailText);
 
 		// phone
 		JLabel phone = new JLabel("Phone #:", SwingConstants.CENTER);
 		panel.add(phone);
 		JTextField phoneText = new JTextField(myAccount.myPhone);
-		if (!MainFrame.activeUser.staff)
-			phoneText.setEditable(false);
 		panel.add(phoneText);
 
 		// update selected account, except admin which is absolute
@@ -91,21 +80,21 @@ public class AccountDialog extends JDialog {
 		update.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				//build an account from fields, and send it to the validifer
 				Account nw = new Account(unameText.getText(), pwordText.getText(), (String) typeText.getSelectedItem(),
 						nameText.getText(), emailText.getText(), phoneText.getText(), myAccount.myId);
-				//no blank passwords allowed, for obvious security reasons
-				if (nw.myPassword.isEmpty()) {
-					JOptionPane.showMessageDialog(AccountDialog.this, "Password field cannot be blank.");
-				} else {
-					if (nw.myUsername.equals(myAccount.myUsername) || MainFrame.userData.checkUser(nw.myUsername)) {
-						MainFrame.userData.update(myAccount, nw);
-						AccountPanel.update();
-						AccountDialog.this.setVisible(false);
-
-					} else {
-						JOptionPane.showMessageDialog(AccountDialog.this, "Account with username already exists.");
-					}
+				AccountValidifier check = new AccountValidifier(nw, myAccount);
+			
+				//if validation succeeds, update the account. otherwise show error at failed test
+				if(check.validate()){
+					MainFrame.userData.update(myAccount, nw);
+					AccountPanel.update();
+					AccountDialog.this.setVisible(false);
 				}
+				else{
+					JOptionPane.showMessageDialog(AccountDialog.this, check.error);
+				}
+				
 			}
 		});
 		// admin doesnt need to change anything, dont want to lock ourselves out

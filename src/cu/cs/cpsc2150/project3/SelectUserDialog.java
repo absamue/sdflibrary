@@ -57,6 +57,7 @@ public class SelectUserDialog extends JDialog {
 						JOptionPane.showMessageDialog(SelectUserDialog.this, "Please enter a valid ID #.");	
 					else
 						SelectUserDialog.this.setVisible(false);
+						idText.setText("");
 				} catch(NumberFormatException ex){
 					JOptionPane.showMessageDialog(SelectUserDialog.this, "Please enter a valid ID #.");
 				}
@@ -66,6 +67,7 @@ public class SelectUserDialog extends JDialog {
 		
 		panel.add(input, BorderLayout.SOUTH);
 		this.add(panel);
+		
 		
 		this.setVisible(true);
 

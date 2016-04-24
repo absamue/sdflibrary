@@ -103,7 +103,7 @@ public class AccountData {
 	 *         the list.
 	 */
 	public Account getAccount(int id) {
-		if (id >= userData.size())
+		if (id >= userData.size() || id < 0)
 			return null;
 		return userData.get(id);
 	}
@@ -117,6 +117,11 @@ public class AccountData {
 	 */
 	public void removeAccount(Account rem) {
 		userData.remove(rem);
+		int i=0;
+		//reset all id numbers in case of not removing last user
+		for(Account acc : userData){
+			acc.myId = i++;
+		}
 		this.save();
 	}
 

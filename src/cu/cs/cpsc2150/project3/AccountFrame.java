@@ -36,6 +36,7 @@ public class AccountFrame extends JFrame {
 		//keep it nicely contained
 		JPanel botPanel = new JPanel(new FlowLayout());		
 		JButton addUser = new JButton("Add user");
+		addUser.setToolTipText("Add a new account to the database.");
 		addUser.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){

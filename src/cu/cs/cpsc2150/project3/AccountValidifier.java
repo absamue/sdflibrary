@@ -9,8 +9,17 @@ package cu.cs.cpsc2150.project3;
  */
 public class AccountValidifier implements Validifier {
 
+	/**
+	 * New account created from input fields.
+	 */
 	private Account nwAccount;
+	/**
+	 * Old account to be updated in case of editing an account.
+	 */
 	private Account origAccount;
+	/**
+	 * Error string, initialized when a test in validate() fails.
+	 */
 	public String error;
 
 	public AccountValidifier(Account nw, Account orig) {

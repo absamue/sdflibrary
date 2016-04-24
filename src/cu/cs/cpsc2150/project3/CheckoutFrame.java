@@ -136,6 +136,7 @@ public class CheckoutFrame extends JFrame {
 		
 		//checkout button, simply notifys the cart
 		JButton checkOut = new JButton("Check Out");
+		checkOut.setToolTipText("Apply all checkout actions.");
 		checkOut.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -143,6 +144,8 @@ public class CheckoutFrame extends JFrame {
 				myCart.checkout();
 				CheckoutFrame.this.updateTables();
 				cancelBooks.clear();
+				//update current user in the database
+				MainFrame.userData.update(myUser, myUser);
 			}
 		});
 		buttonPanel.add(checkOut);
@@ -150,6 +153,7 @@ public class CheckoutFrame extends JFrame {
 		
 		//open a frame containing the catalog, that allows selecting a book to check out
 		JButton addBook = new JButton("Add Book");
+		addBook.setToolTipText("Select a book to be checked out by current user.");
 		addBook.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -166,6 +170,7 @@ public class CheckoutFrame extends JFrame {
 		
 		//places all uncomplete cart books back where they belong, and hides frame
 		JButton cancel = new JButton("Cancel");
+		cancel.setToolTipText("Cancel current transaction and remove all actions.");
 		cancel.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {

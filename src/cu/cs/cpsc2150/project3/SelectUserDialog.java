@@ -46,6 +46,7 @@ public class SelectUserDialog extends JDialog {
 		input.add(idText);
 		
 		JButton okay = new JButton("Okay");
+		okay.setToolTipText("Select user from ID to apply transaction to.");
 		okay.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {

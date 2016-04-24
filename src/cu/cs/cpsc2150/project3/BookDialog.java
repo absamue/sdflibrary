@@ -79,6 +79,7 @@ public class BookDialog extends JDialog {
 
 			// delete currently selected book from catalog
 			JButton remBook = new JButton("Remove Book");
+			remBook.setToolTipText("Remove currently selected book from catalog.");
 			remBook.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
@@ -89,6 +90,7 @@ public class BookDialog extends JDialog {
 			});
 
 			JButton update = new JButton("Update");
+			update.setToolTipText("Update currently selected book from text fields.");
 			update.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {

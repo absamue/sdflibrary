@@ -56,6 +56,7 @@ public class NewBookDialog extends JDialog {
 
 		//add book to catalog on successful validation
 		JButton save = new JButton("Save");
+		save.setToolTipText("Create new book from text fields and add new book to catalog.");
 		save.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

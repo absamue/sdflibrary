@@ -53,6 +53,7 @@ public class MainFrame extends JFrame {
 		//add extra functionality if staff is logged in
 		if (activeUser.staff) {
 			JButton addBook = new JButton("Add book");
+			addBook.setToolTipText("Add a new book to the catalog.");
 			addBook.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -62,6 +63,7 @@ public class MainFrame extends JFrame {
 			userPanel.add(addBook);
 			
 			JButton showAccs = new JButton("Accounts");
+			showAccs.setToolTipText("Show the account database.");
 			showAccs.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
@@ -75,6 +77,7 @@ public class MainFrame extends JFrame {
 
 		// logout button
 		JButton logout = new JButton("Logout");
+		logout.setToolTipText("Logout and show login window.");
 		logout.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

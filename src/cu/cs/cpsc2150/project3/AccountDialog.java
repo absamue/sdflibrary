@@ -78,6 +78,7 @@ public class AccountDialog extends JDialog {
 
 		// update selected account, except admin which is absolute
 		JButton update = new JButton("Update");
+		update.setToolTipText("Update selected account from fields.");
 		update.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -106,6 +107,7 @@ public class AccountDialog extends JDialog {
 
 		// remove current account from database
 		JButton remove = new JButton("Remove");
+		remove.setToolTipText("Remove this account from the database.");
 		remove.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -117,6 +119,11 @@ public class AccountDialog extends JDialog {
 		// admin account cannot be removed
 		if (myAccount.myUsername.equals("admin"))
 			remove.setEnabled(false);
+		//prevent removal of accounts with checked out books
+		if(myAccount.checkedOut.size() > 0){
+			remove.setToolTipText("Cannot remove an account that has checked out books.");
+			remove.setEnabled(false);
+		}
 		panel.add(remove);
 
 		this.add(panel);

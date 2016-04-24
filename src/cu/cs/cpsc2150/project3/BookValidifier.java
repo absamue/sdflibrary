@@ -9,8 +9,17 @@ package cu.cs.cpsc2150.project3;
  */
 public class BookValidifier implements Validifier {
 
+	/**
+	 * New book created from input fields to be validated.
+	 */
 	private Book nwBook;
+	/**
+	 * Book to compare against in case of editing an exisiting book.
+	 */
 	private Book origBook;
+	/**
+	 * Error message of failed test, initialized on a test failure.
+	 */
 	public String error;
 
 	public BookValidifier(Book nw, Book orig) {

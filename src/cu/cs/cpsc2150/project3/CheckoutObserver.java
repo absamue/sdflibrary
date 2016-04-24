@@ -13,15 +13,24 @@ public class CheckoutObserver implements Observer {
 	 */
 	private Book myBook;
 	/**
-	 * account to apply checkout to.
+	 * Account to apply checkout to.
 	 */
 	private Account myAccount;
 	
+	/**
+	 * Creates a CheckoutObserver instance with the given book and account.
+	 * @param check Book to checkout.
+	 * @param acc Account to apply checkout to.
+	 */
 	public CheckoutObserver(Book check, Account acc){
 		myBook = check;
 		myAccount = acc;
 	}
 	
+	/**
+	 * doNotify will perform the checkout action by updating the status of the book in the dialog,
+	 * adding the book to the account's checkedOut list, and updating the catalog table.
+	 */
 	@Override
 	public void doNotify() {
 		//update book to be marked as checked out

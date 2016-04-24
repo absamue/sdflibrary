@@ -30,6 +30,7 @@ public class SelectBookDialog extends JDialog {
 		JScrollPane sPane = new JScrollPane(table);
 
 		JButton okay = new JButton("Okay");
+		okay.setToolTipText("Add currently selected book to cart.");
 		okay.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

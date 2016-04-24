@@ -75,6 +75,7 @@ public class NewAccountDialog extends JDialog {
 
 		// update selected account, except admin which is absolute
 		JButton add = new JButton("Add User");
+		add.setToolTipText("Create a new account from text fields and add new user to account database.");
 		add.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

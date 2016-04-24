@@ -62,6 +62,7 @@ public class CatalogPanel extends JPanel {
 		
 		check = new CheckoutFrame();
 		JButton checkOut = new JButton("Check out");
+		checkOut.setToolTipText("Open the checkout window.");
 		checkOut.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {

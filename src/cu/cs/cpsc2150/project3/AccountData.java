@@ -34,9 +34,6 @@ public class AccountData {
 			Account admin = new Account("admin", "", "Staff", "Andrew Samuels", "absamue@g.clemson.edu", "843-737-3461",
 					userData.size());
 			userData.add(admin);
-			Account test = new Account("asdf", "asdf", "Member", "test user", "test@test.com", "123-456-7891",
-					userData.size());
-			userData.add(test);
 		} catch (ClassNotFoundException c) {
 			c.printStackTrace();
 		}

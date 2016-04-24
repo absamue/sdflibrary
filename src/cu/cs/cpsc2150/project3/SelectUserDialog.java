@@ -20,6 +20,7 @@ public class SelectUserDialog extends JDialog {
 
 	private Account find;
 	
+	//create modal dialog to select an account to use in checkout
 	public SelectUserDialog(Frame parent){
 		super(parent, "Select User", true);
 		this.setSize(400,150);
@@ -49,6 +50,7 @@ public class SelectUserDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
+					//get the account of the given id #. display error if given nonexistant number or NaN
 					find = MainFrame.userData.getAccount(Integer.parseInt(idText.getText()));
 					if(find == null)
 						JOptionPane.showMessageDialog(SelectUserDialog.this, "Please enter a valid ID #.");	

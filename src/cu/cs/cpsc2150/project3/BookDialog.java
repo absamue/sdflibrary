@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -91,10 +92,19 @@ public class BookDialog extends JDialog {
 			update.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Book upd = new Book(titleText.getText(), authorText.getText(), genreText.getText(), tagsText.getText());
-					CatalogTableModel.getCatalog().updateBook(myBook, upd);
-					CatalogPanel.update();
-					BookDialog.this.setVisible(false);
+					//make new book from fields and verify information
+					Book upd = new Book(titleText.getText(), authorText.getText(), genreText.getText(),
+							tagsText.getText());
+					BookValidifier check = new BookValidifier(upd, myBook);
+				
+					//update on validation success
+					if (check.validate()) {
+						CatalogTableModel.getCatalog().updateBook(myBook, upd);
+						CatalogPanel.update();
+						BookDialog.this.setVisible(false);
+					} else {
+						JOptionPane.showMessageDialog(BookDialog.this, check.error);
+					}
 				}
 			});
 

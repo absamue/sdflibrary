@@ -164,6 +164,7 @@ public class CheckoutFrame extends JFrame {
 		});
 		buttonPanel.add(addBook);
 		
+		//places all uncomplete cart books back where they belong, and hides frame
 		JButton cancel = new JButton("Cancel");
 		cancel.addActionListener(new ActionListener(){
 			@Override
@@ -193,7 +194,7 @@ public class CheckoutFrame extends JFrame {
 		this.setVisible(true);
 	}
 	
-	//update both of the tables, since they are 
+	//update both of the tables, data has changed 
 	public void updateTables(){
 		((CheckedTableModel) user.getModel()).fireTableDataChanged();
 		((ActionTableModel) select.getModel()).fireTableDataChanged();

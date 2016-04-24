@@ -2,19 +2,19 @@ package cu.cs.cpsc2150.project3;
 
 import javax.swing.table.AbstractTableModel;
 
+@SuppressWarnings("serial")
 public class ActionTableModel extends AbstractTableModel {
 
 	private final String[] names = {"Action", "Book"};
 	
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
 		return 2;
 	}
 
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
+		//number of books in the cart
 		return CheckoutFrame.myCart.cartBooks.size();
 	}
 

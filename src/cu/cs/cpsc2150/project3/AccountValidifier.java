@@ -1,5 +1,12 @@
 package cu.cs.cpsc2150.project3;
 
+/**
+ * The AccountValidifer class verifies that the information used to create or
+ * update an account satisfies the restraints of the prompted information.
+ * 
+ * @author Andrew
+ *
+ */
 public class AccountValidifier implements Validifier {
 
 	private Account nwAccount;
@@ -9,10 +16,15 @@ public class AccountValidifier implements Validifier {
 	public AccountValidifier(Account nw, Account orig) {
 		nwAccount = nw;
 		origAccount = orig;
-		if(origAccount == null)
+		// called from new account dialog, fill orig with dummy information
+		if (origAccount == null)
 			origAccount = new Account("Gj-'feBJRFA*4\2{", "", "", "", "", "", 1337);
 	}
-
+	
+	/**
+	 * validate() runs a series of procedural tests to determine if the information of an account is valid.
+	 * @return returns false if any of the tests fail. Returns true if all tests complete successfully.
+	 */
 	@Override
 	public boolean validate() {
 

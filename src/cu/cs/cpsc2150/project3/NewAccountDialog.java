@@ -48,14 +48,12 @@ public class NewAccountDialog extends JDialog {
 		JTextField pwordText = new JTextField();
 		panel.add(pwordText);
 
-		// CHANGE THIS TO DROP DOWN LIST
+		//account type
 		JLabel type = new JLabel("Type:", SwingConstants.CENTER);
 		panel.add(type);
-//		JTextField typeText = new JTextField();
 		@SuppressWarnings("rawtypes")
 		JComboBox typeText = new JComboBox(staffOpt);
 		panel.add(typeText);
-		// CHANGE ME
 
 		// name
 		JLabel name = new JLabel("Name:", SwingConstants.CENTER);

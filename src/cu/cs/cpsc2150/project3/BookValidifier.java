@@ -1,5 +1,12 @@
 package cu.cs.cpsc2150.project3;
 
+/**
+ * The BookValidifer class provides verification for the information used in
+ * creating or updating a book class.
+ * 
+ * @author Andrew
+ *
+ */
 public class BookValidifier implements Validifier {
 
 	private Book nwBook;
@@ -14,6 +21,11 @@ public class BookValidifier implements Validifier {
 		}
 	}
 
+	/**
+	 * validate() will perform a series of tests to determine if the given
+	 * information satisfies the constraints of the variable.
+	 * @return returns false if any test fails. returns true if all tests are successful.
+	 */
 	@Override
 	public boolean validate() {
 		// check title field
@@ -21,6 +33,7 @@ public class BookValidifier implements Validifier {
 			error = "Title field cannot be left blank.";
 			return false;
 		}
+		// make sure title doesnt already exist
 		if (CatalogTableModel.catalog.checkTitle(nwBook)) {
 			if (!nwBook.myTitle.equals(origBook.myTitle)) {
 				error = "Book with this title already exisits.";
@@ -28,11 +41,13 @@ public class BookValidifier implements Validifier {
 			}
 		}
 
+		// author cannot be blank
 		if (nwBook.myTitle.equals("")) {
 			error = "Author field cannot be left blank.";
 			return false;
 		}
 
+		// genre cannot be blank
 		if (nwBook.myGenre.equals("")) {
 			error = "Genre field cannot be left blank.";
 			return false;

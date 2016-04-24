@@ -18,6 +18,8 @@ public class Book implements java.io.Serializable{
 		myTags = tag;
 	}
 	
+	//make a new book from given book
+	//used primarily to change checked out value and add to database
 	public Book(Book clone){
 		myTitle = clone.myTitle;
 		myAuthors = clone.myAuthors;

@@ -14,7 +14,7 @@ public class AccountTableModel extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
+		//row count is number of accounts in database
 		return MainFrame.userData.getSize();
 	}
 

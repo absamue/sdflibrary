@@ -15,6 +15,7 @@ public class MainFrame extends JFrame {
 	LoginDialog login;
 	NewBookDialog newBook;
 	NewAccountDialog newAccount;
+	AccountFrame accFrame;
 
 	public MainFrame() {
 		super("SDF Library");
@@ -38,7 +39,7 @@ public class MainFrame extends JFrame {
 		this.setLayout(new BorderLayout());
 		this.add(catalogPanel);
 	
-		//buttons for different actions, dependent on loggin in user
+		//Initialize the panels we need
 		JPanel sidePanel = new JPanel(new BorderLayout());
 		sidePanel.setBorder(new EmptyBorder(10,10,10,10));
 		sidePanel.setPreferredSize(new Dimension(150, 500));
@@ -64,7 +65,7 @@ public class MainFrame extends JFrame {
 			showAccs.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					AccountFrame accFrame = new AccountFrame(MainFrame.this);
+					accFrame = new AccountFrame();
 				}
 			});
 			userPanel.add(showAccs);

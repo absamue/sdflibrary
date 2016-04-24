@@ -22,7 +22,6 @@ public class LoginDialog extends JDialog {
 		this.setLocationRelativeTo(null);
 		
 		//grid panel
-
 		JPanel panel = new JPanel(new GridLayout(3,2,10,10));
 		panel.setBorder(new EmptyBorder(5,5,5,5));
 		
@@ -56,7 +55,6 @@ public class LoginDialog extends JDialog {
 			}
 		});
 		//enter to hit login
-
 		this.getRootPane().setDefaultButton(login);
 		panel.add(login);
 	

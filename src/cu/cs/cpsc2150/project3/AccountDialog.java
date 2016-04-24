@@ -18,8 +18,9 @@ import javax.swing.border.EmptyBorder;
 @SuppressWarnings("serial")
 public class AccountDialog extends JDialog {
 	private Account myAccount;
-	String[] staffOpt = {"Staff", "Member"};
+	String[] staffOpt = { "Staff", "Member" };
 
+	// initialize dialog with parent frame and account to show info of
 	public AccountDialog(Frame parent, Account selection) {
 		super(parent, "Account info", true);
 		myAccount = selection;
@@ -48,12 +49,12 @@ public class AccountDialog extends JDialog {
 		JTextField pwordText = new JTextField(myAccount.myPassword);
 		panel.add(pwordText);
 
-		//account type
+		// account type
 		JLabel type = new JLabel("Type:", SwingConstants.CENTER);
 		panel.add(type);
 		@SuppressWarnings("rawtypes")
 		JComboBox typeText = new JComboBox(staffOpt);
-		if(!myAccount.staff)
+		if (!myAccount.staff)
 			typeText.setSelectedIndex(1);
 		panel.add(typeText);
 
@@ -80,21 +81,21 @@ public class AccountDialog extends JDialog {
 		update.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//build an account from fields, and send it to the validifer
+				// build an account from fields, and send it to the validifer
 				Account nw = new Account(unameText.getText(), pwordText.getText(), (String) typeText.getSelectedItem(),
 						nameText.getText(), emailText.getText(), phoneText.getText(), myAccount.myId);
 				AccountValidifier check = new AccountValidifier(nw, myAccount);
-			
-				//if validation succeeds, update the account. otherwise show error at failed test
-				if(check.validate()){
+
+				// if validation succeeds, update the account. otherwise show
+				// error at failed test
+				if (check.validate()) {
 					MainFrame.userData.update(myAccount, nw);
 					AccountPanel.update();
 					AccountDialog.this.setVisible(false);
-				}
-				else{
+				} else {
 					JOptionPane.showMessageDialog(AccountDialog.this, check.error);
 				}
-				
+
 			}
 		});
 		// admin doesnt need to change anything, dont want to lock ourselves out
@@ -103,7 +104,7 @@ public class AccountDialog extends JDialog {
 		}
 		panel.add(update);
 
-		// close window
+		// remove current account from database
 		JButton remove = new JButton("Remove");
 		remove.addActionListener(new ActionListener() {
 			@Override
@@ -113,10 +114,11 @@ public class AccountDialog extends JDialog {
 				AccountDialog.this.setVisible(false);
 			}
 		});
-		if(myAccount.myUsername.equals("admin"))
+		// admin account cannot be removed
+		if (myAccount.myUsername.equals("admin"))
 			remove.setEnabled(false);
 		panel.add(remove);
-		
+
 		this.add(panel);
 		this.setVisible(true);
 	}

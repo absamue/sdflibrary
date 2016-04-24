@@ -20,9 +20,11 @@ public class AccountPanel extends JPanel {
 		myParent = parent;
 		this.initialize();
 	}
+	
 	public void initialize(){
 		this.setLayout(new BorderLayout());
 
+		//set up table of account information
 		accModel = new AccountTableModel();
 		JTable table = new JTable(accModel);
 		table.addMouseListener(new MouseListener(){

@@ -1,8 +1,20 @@
 package cu.cs.cpsc2150.project3;
 
+/**
+ * The CheckoutObserver class provides Observer functionality inorder to mark a book
+ * as checked out and place it with the account that checked it out.
+ * @author Andrew
+ *
+ */
 public class CheckoutObserver implements Observer {
 
+	/**
+	 * Book to check out.
+	 */
 	private Book myBook;
+	/**
+	 * account to apply checkout to.
+	 */
 	private Account myAccount;
 	
 	public CheckoutObserver(Book check, Account acc){

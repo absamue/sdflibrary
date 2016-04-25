@@ -15,7 +15,7 @@ public class SelectBookDialog extends JDialog {
 	//create a modal dialog to select a book to check out
 	public SelectBookDialog(Frame parent) {
 		super(parent, "Select Book", true);
-		this.setSize(300, 300);
+		this.setSize(500, 300);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 
@@ -38,10 +38,18 @@ public class SelectBookDialog extends JDialog {
 				if (row != -1) {
 					//get book from selected row
 					sel = CatalogTableModel.getCatalog().getBook(row);
+					//prevent selecting a checked out book
 					if (sel.checkedOut) {
 						JOptionPane.showMessageDialog(SelectBookDialog.this,
 								"You cannot select a book that is checked out.");
-					} else {
+					}
+					//prevent selecting a book that is in the cart already
+					else if(CheckoutFrame.myCart.cartBooks.contains(sel)){
+						JOptionPane.showMessageDialog(SelectBookDialog.this, 
+								"Book is already in the checkout cart.");
+					}
+					//valid checkout book
+					else {
 						SelectBookDialog.this.setVisible(false);
 					}
 				} else {
@@ -50,7 +58,7 @@ public class SelectBookDialog extends JDialog {
 			}
 		});
 
-		//set selected book to null and close window
+		//no selection made, set selected book to null and close window
 		JButton cancel = new JButton("Cancel");
 		cancel.addActionListener(new ActionListener() {
 

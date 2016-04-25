@@ -79,6 +79,19 @@ public class CatalogData {
 	}
 	
 	/**
+	 * getFromTitle(String title) returns the book with the specified title.
+	 * @param title Title of book to find.
+	 * @return Returns book with matching title if found, otherwise returns null.
+	 */
+	public Book getFromTitle(String title){
+		for(Book bk : catalogData){
+			if(bk.myTitle.equals(title))
+				return bk;
+		}
+		return null;
+	}
+	
+	/**
 	 * removeBook(Book) rem will remove the specified book from the catalog.
 	 * @param rem Book to be removed.
 	 */

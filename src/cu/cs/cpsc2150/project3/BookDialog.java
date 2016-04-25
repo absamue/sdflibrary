@@ -44,7 +44,7 @@ public class BookDialog extends JDialog {
 		panel.add(titleText);
 
 		// author info
-		JLabel author = new JLabel("Title:", SwingConstants.CENTER);
+		JLabel author = new JLabel("Author:", SwingConstants.CENTER);
 		panel.add(author);
 		JTextField authorText = new JTextField();
 		authorText.setText(myBook.myAuthors);
@@ -88,6 +88,10 @@ public class BookDialog extends JDialog {
 					CatalogPanel.update();
 				}
 			});
+			if(myBook.checkedOut){
+				remBook.setEnabled(false);
+				remBook.setToolTipText("Cannot remove a book that is checked out.");
+			}
 
 			JButton update = new JButton("Update");
 			update.setToolTipText("Update currently selected book from text fields.");
@@ -109,6 +113,10 @@ public class BookDialog extends JDialog {
 					}
 				}
 			});
+			if(myBook.checkedOut){
+				update.setEnabled(false);
+				update.setToolTipText("Cannot update a book that is checked out.");
+			}
 
 			panel.add(remBook);
 			panel.add(update);

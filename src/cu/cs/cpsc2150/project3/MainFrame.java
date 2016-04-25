@@ -26,9 +26,9 @@ public class MainFrame extends JFrame {
 		userData = new AccountData();
 		// login dialog to grab user
 		login = new LoginDialog(this);
+		MainFrame.activeUser = login.getAccount();
 		newBook = new NewBookDialog(this);
 		catalogPanel = new CatalogPanel(this);
-		MainFrame.activeUser = login.getAccount();
 		this.initialize();
 	}
 

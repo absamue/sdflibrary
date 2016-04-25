@@ -68,7 +68,7 @@ public class CheckoutFrame extends JFrame {
 		JLabel username = new JLabel(myUser.myUsername, SwingConstants.LEFT);
 		infoPanel.add(username);
 		
-		JLabel checked = new JLabel("Currently held books (Double click to return):", SwingConstants.CENTER);
+		JLabel checked = new JLabel("Currently held books:", SwingConstants.CENTER);
 		infoPanel.add(checked);
 		
 		JLabel actions = new JLabel("Return or checkout books:", SwingConstants.CENTER);
@@ -83,6 +83,7 @@ public class CheckoutFrame extends JFrame {
 		
 		//make a table contained of myUser's checked out books
 		user = new JTable(new CheckedTableModel(myUser));
+		user.setToolTipText("Double click a row to return selected book.");
 		user.addMouseListener(new MouseListener(){
 
 			//add selected book into the action table to be returned

@@ -34,6 +34,8 @@ public class CatalogPanel extends JPanel {
 		table = new JTable(new CatalogTableModel());
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
+		table.setToolTipText("Double click a row to see book information.");
+
 		//listen for doubleclick to open book window
 		table.addMouseListener(new MouseListener(){
 
@@ -71,7 +73,6 @@ public class CatalogPanel extends JPanel {
 		
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
-		
 		//Search panel
 		JLabel searchLabel = new JLabel("Search:");
 		searchPanel.add(searchLabel);
@@ -84,6 +85,7 @@ public class CatalogPanel extends JPanel {
 		searchButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				rowSorter.setRowFilter(null);
 				String text = searchText.getText();
 				if(text.trim().length() == 0){
 					rowSorter.setRowFilter(null);

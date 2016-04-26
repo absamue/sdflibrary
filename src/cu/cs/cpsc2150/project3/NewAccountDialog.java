@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
 public class NewAccountDialog extends JDialog {
-	String[] staffOpt = {"Staff", "Member"};
+	String[] staffOpt = { "Staff", "Member" };
 	Frame myParent;
 
 	public NewAccountDialog(Frame parent) {
@@ -48,7 +48,7 @@ public class NewAccountDialog extends JDialog {
 		final JTextField pwordText = new JTextField();
 		panel.add(pwordText);
 
-		//account type
+		// account type
 		JLabel type = new JLabel("Type:", SwingConstants.CENTER);
 		panel.add(type);
 		@SuppressWarnings("rawtypes")
@@ -79,24 +79,24 @@ public class NewAccountDialog extends JDialog {
 		add.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//make a new account and validifier from fields
+				// make a new account and validifier from fields
 				Account nw = new Account(unameText.getText(), pwordText.getText(), (String) typeText.getSelectedItem(),
 						nameText.getText(), emailText.getText(), phoneText.getText(), 999);
 				AccountValidifier check = new AccountValidifier(nw, null);
-				
-				//validate info. update if successful otherwise show relevant error
-				if(check.validate()){
+
+				// validate info. update if successful otherwise show relevant
+				// error
+				if (check.validate()) {
 					MainFrame.userData.addUser(nw);
 					AccountPanel.update();
 					NewAccountDialog.this.setVisible(false);
-					//remove all text fields for next open
+					// remove all text fields for next open
 					unameText.setText("");
 					pwordText.setText("");
 					nameText.setText("");
 					emailText.setText("");
 					phoneText.setText("");
-				}
-				else{
+				} else {
 					JOptionPane.showMessageDialog(NewAccountDialog.this, check.error);
 				}
 			}
@@ -109,13 +109,13 @@ public class NewAccountDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				NewAccountDialog.this.setVisible(false);
-				//remove all text fields for next open
+				// remove all text fields for next open
 				unameText.setText("");
 				pwordText.setText("");
 				nameText.setText("");
 				emailText.setText("");
 				phoneText.setText("");
-				
+
 			}
 		});
 

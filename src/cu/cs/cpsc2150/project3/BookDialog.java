@@ -88,7 +88,7 @@ public class BookDialog extends JDialog {
 					CatalogPanel.update();
 				}
 			});
-			if(myBook.checkedOut){
+			if (myBook.checkedOut) {
 				remBook.setEnabled(false);
 				remBook.setToolTipText("Cannot remove a book that is checked out.");
 			}
@@ -98,12 +98,12 @@ public class BookDialog extends JDialog {
 			update.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					//make new book from fields and verify information
+					// make new book from fields and verify information
 					Book upd = new Book(titleText.getText(), authorText.getText(), genreText.getText(),
 							tagsText.getText());
 					BookValidifier check = new BookValidifier(upd, myBook);
-				
-					//update on validation success
+
+					// update on validation success
 					if (check.validate()) {
 						CatalogTableModel.getCatalog().updateBook(myBook, upd);
 						CatalogPanel.update();
@@ -113,7 +113,7 @@ public class BookDialog extends JDialog {
 					}
 				}
 			});
-			if(myBook.checkedOut){
+			if (myBook.checkedOut) {
 				update.setEnabled(false);
 				update.setToolTipText("Cannot update a book that is checked out.");
 			}

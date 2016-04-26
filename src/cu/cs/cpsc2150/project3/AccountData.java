@@ -117,9 +117,9 @@ public class AccountData {
 	 */
 	public void removeAccount(Account rem) {
 		userData.remove(rem);
-		int i=0;
-		//reset all id numbers in case of not removing last user
-		for(Account acc : userData){
+		int i = 0;
+		// reset all id numbers in case of not removing last user
+		for (Account acc : userData) {
 			acc.myId = i++;
 		}
 		this.save();

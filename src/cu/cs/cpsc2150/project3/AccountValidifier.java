@@ -29,10 +29,13 @@ public class AccountValidifier implements Validifier {
 		if (origAccount == null)
 			origAccount = new Account("Gj-'feBJRFA*4\2{", "", "", "", "", "", 1337);
 	}
-	
+
 	/**
-	 * validate() runs a series of procedural tests to determine if the information of an account is valid.
-	 * @return returns false if any of the tests fail. Returns true if all tests complete successfully.
+	 * validate() runs a series of procedural tests to determine if the
+	 * information of an account is valid.
+	 * 
+	 * @return returns false if any of the tests fail. Returns true if all tests
+	 *         complete successfully.
 	 */
 	@Override
 	public boolean validate() {
@@ -84,7 +87,6 @@ public class AccountValidifier implements Validifier {
 			error = "The phone number entered is not in a valid format.";
 			return false;
 		}
-	
 
 		return true;
 	}

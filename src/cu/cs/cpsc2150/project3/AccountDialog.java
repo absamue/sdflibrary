@@ -119,8 +119,8 @@ public class AccountDialog extends JDialog {
 		// admin account cannot be removed
 		if (myAccount.myUsername.equals("admin"))
 			remove.setEnabled(false);
-		//prevent removal of accounts with checked out books
-		if(myAccount.checkedOut.size() > 0){
+		// prevent removal of accounts with checked out books
+		if (myAccount.checkedOut.size() > 0) {
 			remove.setToolTipText("Cannot remove an account that has checked out books.");
 			remove.setEnabled(false);
 		}

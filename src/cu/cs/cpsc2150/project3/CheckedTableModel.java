@@ -6,13 +6,12 @@ import javax.swing.table.AbstractTableModel;
 public class CheckedTableModel extends AbstractTableModel {
 
 	private Account myAccount;
-	private final String[] names = {"Title", "Author", "Genre"};
-	
-	public CheckedTableModel(Account acc){
+	private final String[] names = { "Title", "Author", "Genre" };
+
+	public CheckedTableModel(Account acc) {
 		myAccount = acc;
 	}
-	
-	
+
 	@Override
 	public int getColumnCount() {
 		return 3;
@@ -21,14 +20,14 @@ public class CheckedTableModel extends AbstractTableModel {
 	@Override
 	public int getRowCount() {
 		return myAccount.checkedOut.size();
-	
+
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		Book find = myAccount.checkedOut.get(rowIndex);
 		Object ret = null;
-		switch(columnIndex){
+		switch (columnIndex) {
 		case 0:
 			ret = find.myTitle;
 			break;
@@ -39,12 +38,12 @@ public class CheckedTableModel extends AbstractTableModel {
 			ret = find.myGenre;
 			break;
 		}
-		
+
 		return ret;
 	}
-	
+
 	@Override
-	public String getColumnName(int column){
+	public String getColumnName(int column) {
 		return names[column];
 	}
 

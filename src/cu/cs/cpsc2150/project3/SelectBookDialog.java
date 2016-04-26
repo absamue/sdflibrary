@@ -14,7 +14,7 @@ public class SelectBookDialog extends JDialog {
 
 	private Book sel;
 
-	//create a modal dialog to select a book to check out
+	// create a modal dialog to select a book to check out
 	public SelectBookDialog(Frame parent) {
 		super(parent, "Select Book", true);
 		this.setSize(500, 300);
@@ -32,7 +32,7 @@ public class SelectBookDialog extends JDialog {
 		table.setToolTipText("Select a book to add to cart, then click okay.");
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
-		//only show available books for selection
+		// only show available books for selection
 		rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + "Available"));
 		JScrollPane sPane = new JScrollPane(table);
 
@@ -43,19 +43,18 @@ public class SelectBookDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				int row = table.getSelectedRow();
 				if (row != -1) {
-					//get book from selected row
+					// get book from selected row
 					sel = CatalogTableModel.getCatalog().getFromTitle((String) table.getValueAt(row, 0));
-					//prevent selecting a checked out book
+					// prevent selecting a checked out book
 					if (sel.checkedOut) {
 						JOptionPane.showMessageDialog(SelectBookDialog.this,
 								"You cannot select a book that is checked out.");
 					}
-					//prevent selecting a book that is in the cart already
-					else if(CheckoutFrame.myCart.cartBooks.contains(sel)){
-						JOptionPane.showMessageDialog(SelectBookDialog.this, 
-								"Book is already in the checkout cart.");
+					// prevent selecting a book that is in the cart already
+					else if (CheckoutFrame.myCart.cartBooks.contains(sel)) {
+						JOptionPane.showMessageDialog(SelectBookDialog.this, "Book is already in the checkout cart.");
 					}
-					//valid checkout book
+					// valid checkout book
 					else {
 						SelectBookDialog.this.setVisible(false);
 					}
@@ -65,7 +64,7 @@ public class SelectBookDialog extends JDialog {
 			}
 		});
 
-		//no selection made, set selected book to null and close window
+		// no selection made, set selected book to null and close window
 		JButton cancel = new JButton("Cancel");
 		cancel.addActionListener(new ActionListener() {
 

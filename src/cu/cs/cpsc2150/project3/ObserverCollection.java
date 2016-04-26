@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * The ObserverCollection class provieds a storage of observers.
+ * 
  * @author Andrew
  *
  */
@@ -15,7 +16,9 @@ public class ObserverCollection {
 
 	/**
 	 * Add given observer to list.
-	 * @param obs Observer to add
+	 * 
+	 * @param obs
+	 *            Observer to add
 	 */
 	public void registerObserver(Observer obs) {
 		myObservers.add(obs);
@@ -23,7 +26,9 @@ public class ObserverCollection {
 
 	/**
 	 * Remove given observer from list.
-	 * @param obs Observer to remove.
+	 * 
+	 * @param obs
+	 *            Observer to remove.
 	 */
 	public void unregisterObserver(Observer obs) {
 		myObservers.remove(obs);
@@ -32,10 +37,10 @@ public class ObserverCollection {
 	/**
 	 * Clear all observers from myObservers.
 	 */
-	public void unregisterAll(){
+	public void unregisterAll() {
 		myObservers.clear();
 	}
-	
+
 	/**
 	 * Notifies each observer in the list to perform it's action.
 	 */

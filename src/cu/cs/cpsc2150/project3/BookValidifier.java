@@ -33,7 +33,9 @@ public class BookValidifier implements Validifier {
 	/**
 	 * validate() will perform a series of tests to determine if the given
 	 * information satisfies the constraints of the variable.
-	 * @return returns false if any test fails. returns true if all tests are successful.
+	 * 
+	 * @return returns false if any test fails. returns true if all tests are
+	 *         successful.
 	 */
 	@Override
 	public boolean validate() {

@@ -14,39 +14,38 @@ public class AccountFrame extends JFrame {
 
 	private JPanel myPanel;
 	private NewAccountDialog newAccount;
-	
-	public AccountFrame(){
+
+	public AccountFrame() {
 		super("Account Database");
-		//set up panel with database table
+		// set up panel with database table
 		myPanel = new AccountPanel(this);
-		//make dialog for adding new accounts
+		// make dialog for adding new accounts
 		newAccount = new NewAccountDialog(this);
 		this.initialize();
 	}
-	
-	public void initialize(){
+
+	public void initialize() {
 		this.setSize(500, 300);
 		this.setLocationRelativeTo(null);
 		this.setAlwaysOnTop(true);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		this.add(myPanel);
-		
-		//button to set new account dialog visible
-		//keep it nicely contained
-		JPanel botPanel = new JPanel(new FlowLayout());		
+
+		// button to set new account dialog visible
+		// keep it nicely contained
+		JPanel botPanel = new JPanel(new FlowLayout());
 		JButton addUser = new JButton("Add user");
 		addUser.setToolTipText("Add a new account to the database.");
-		addUser.addActionListener(new ActionListener(){
+		addUser.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e){
+			public void actionPerformed(ActionEvent e) {
 				newAccount.setVisible(true);
 			}
 		});
 		botPanel.add(addUser);
 		this.add(botPanel, BorderLayout.SOUTH);
-		
-		
+
 		this.setVisible(true);
 	}
 }

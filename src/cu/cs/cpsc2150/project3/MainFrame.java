@@ -32,25 +32,24 @@ public class MainFrame extends JFrame {
 		this.initialize();
 	}
 
-	
-	public void initialize(){
+	public void initialize() {
 		this.setSize(800, 500);
 		this.setLocationRelativeTo(null);
 		this.setLayout(new BorderLayout());
 		this.add(catalogPanel);
-	
-		//Initialize the panels we need
+
+		// Initialize the panels we need
 		JPanel sidePanel = new JPanel(new BorderLayout());
-		sidePanel.setBorder(new EmptyBorder(10,10,10,10));
+		sidePanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		sidePanel.setPreferredSize(new Dimension(150, 500));
 		JPanel userPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 15));
-		JPanel loginPanel = new JPanel(new GridLayout(2,1,10,10));
+		JPanel loginPanel = new JPanel(new GridLayout(2, 1, 10, 10));
 
 		// active user info
 		JLabel user = new JLabel("Active user: " + activeUser.myUsername, SwingConstants.CENTER);
 		loginPanel.add(user);
 
-		//add extra functionality if staff is logged in
+		// add extra functionality if staff is logged in
 		if (activeUser.staff) {
 			JButton addBook = new JButton("Add book");
 			addBook.setToolTipText("Add a new book to the catalog.");
@@ -61,19 +60,18 @@ public class MainFrame extends JFrame {
 				}
 			});
 			userPanel.add(addBook);
-			
+
 			JButton showAccs = new JButton("Accounts");
 			showAccs.setToolTipText("Show the account database.");
-			showAccs.addActionListener(new ActionListener(){
+			showAccs.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					accFrame = new AccountFrame();
 				}
 			});
 			userPanel.add(showAccs);
-			
-		}
 
+		}
 
 		// logout button
 		JButton logout = new JButton("Logout");
@@ -101,12 +99,11 @@ public class MainFrame extends JFrame {
 
 		this.add(sidePanel, BorderLayout.WEST);
 		this.setVisible(true);
-		
+
 	}
 
 	public static Account getActive() {
 		return activeUser;
 	}
-	
 
 }

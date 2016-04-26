@@ -5,8 +5,8 @@ import javax.swing.table.AbstractTableModel;
 @SuppressWarnings("serial")
 public class ActionTableModel extends AbstractTableModel {
 
-	private final String[] names = {"Action", "Book"};
-	
+	private final String[] names = { "Action", "Book" };
+
 	@Override
 	public int getColumnCount() {
 		return 2;
@@ -14,7 +14,7 @@ public class ActionTableModel extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		//number of books in the cart
+		// number of books in the cart
 		return CheckoutFrame.myCart.cartBooks.size();
 	}
 
@@ -22,9 +22,9 @@ public class ActionTableModel extends AbstractTableModel {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		Book find = CheckoutFrame.myCart.cartBooks.get(rowIndex);
 		Object ret = null;
-		switch(columnIndex){
+		switch (columnIndex) {
 		case 0:
-			if(find.checkedOut)
+			if (find.checkedOut)
 				ret = "Return";
 			else
 				ret = "Check out";
@@ -33,12 +33,12 @@ public class ActionTableModel extends AbstractTableModel {
 			ret = find.myTitle;
 			break;
 		}
-		
+
 		return ret;
 	}
 
 	@Override
-	public String getColumnName(int columnIndex){
+	public String getColumnName(int columnIndex) {
 		return names[columnIndex];
 	}
 }

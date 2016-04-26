@@ -6,12 +6,12 @@ import javax.swing.table.AbstractTableModel;
 public class CatalogTableModel extends AbstractTableModel {
 
 	public static CatalogData catalog;
-	private final String[] names = {"Title", "Authors", "Genre", "Availability"};
-	
-	public CatalogTableModel(){
+	private final String[] names = { "Title", "Authors", "Genre", "Availability" };
+
+	public CatalogTableModel() {
 		catalog = new CatalogData();
 	}
-	
+
 	@Override
 	public int getColumnCount() {
 		return 4;
@@ -26,7 +26,7 @@ public class CatalogTableModel extends AbstractTableModel {
 	public Object getValueAt(int arg0, int arg1) {
 		Book find = catalog.getBook(arg0);
 		Object ret = null;
-		switch(arg1){
+		switch (arg1) {
 		case 0:
 			ret = find.myTitle;
 			break;
@@ -37,25 +37,23 @@ public class CatalogTableModel extends AbstractTableModel {
 			ret = find.myGenre;
 			break;
 		case 3:
-			if(find.checkedOut)
+			if (find.checkedOut)
 				ret = "Checked out.";
 			else
 				ret = "Available";
 			break;
 		}
-		
+
 		return ret;
 	}
 
 	@Override
-	public String getColumnName(int column){
+	public String getColumnName(int column) {
 		return names[column];
-		
+
 	}
-	
-	
-	
-	public static CatalogData getCatalog(){
+
+	public static CatalogData getCatalog() {
 		return catalog;
 	}
 }

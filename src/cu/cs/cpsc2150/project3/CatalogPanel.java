@@ -17,35 +17,35 @@ import javax.swing.table.TableRowSorter;
 
 @SuppressWarnings("serial")
 public class CatalogPanel extends JPanel {
-	
+
 	BookDialog bookDialog;
 	CheckoutFrame check;
 	static JTable table;
 	Frame myParent;
-	
-	public CatalogPanel(Frame parent){
+
+	public CatalogPanel(Frame parent) {
 		myParent = parent;
-		
+
 		this.setLayout(new BorderLayout());
-		JPanel panel = new JPanel(new GridLayout(2,1,5,5));
-		panel.setBorder(new EmptyBorder(5,5,5,5));
+		JPanel panel = new JPanel(new GridLayout(2, 1, 5, 5));
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		JPanel searchPanel = new JPanel(new FlowLayout());
-		
-		//make a table from the catalog info, and add to a scrollpanel
+
+		// make a table from the catalog info, and add to a scrollpanel
 		table = new JTable(new CatalogTableModel());
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
 		table.setToolTipText("Double click a row to see book information.");
 
-		//listen for doubleclick to open book window
-		table.addMouseListener(new MouseListener(){
+		// listen for doubleclick to open book window
+		table.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if(arg0.getClickCount() == 2){					
-					//get selected book
+				if (arg0.getClickCount() == 2) {
+					// get selected book
 					int row = table.rowAtPoint(arg0.getPoint());
-					if(row != -1){
+					if (row != -1) {
 						Book sel = CatalogTableModel.getCatalog().getFromTitle((String) table.getValueAt(row, 0));
 						CatalogPanel.this.bookDialog = new BookDialog(CatalogPanel.this.myParent, sel);
 						CatalogPanel.this.revalidate();
@@ -53,54 +53,56 @@ public class CatalogPanel extends JPanel {
 				}
 			}
 
-			//dont need these
+			// dont need these
 			@Override
-			public void mouseEntered(MouseEvent e) {	
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {	
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {	
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {	
+			public void mouseReleased(MouseEvent e) {
 			}
-			
+
 		});
-		//make the table scrollable
+		// make the table scrollable
 		JScrollPane sPane = new JScrollPane(table);
-		this.add(sPane);	
-		
+		this.add(sPane);
+
 		final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
-		//Search panel
+		// Search panel
 		JLabel searchLabel = new JLabel("Search:");
 		searchPanel.add(searchLabel);
 		final JTextField searchText = new JTextField();
-		searchText.setPreferredSize(new Dimension(431,27));
+		searchText.setPreferredSize(new Dimension(431, 27));
 		searchPanel.add(searchText);
-		
+
 		JButton searchButton = new JButton("Search");
 		searchButton.setToolTipText("Search the catalog.");
-		searchButton.addActionListener(new ActionListener(){
+		searchButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				rowSorter.setRowFilter(null);
 				String text = searchText.getText();
-				if(text.trim().length() == 0){
+				if (text.trim().length() == 0) {
 					rowSorter.setRowFilter(null);
-				}
-				else{
+				} else {
 					rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
 				}
 			}
 		});
 		searchPanel.add(searchButton);
-		
+
 		JButton clear = new JButton("Clear");
 		clear.setToolTipText("Clear search.");
-		clear.addActionListener(new ActionListener(){
+		clear.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				searchText.setText("");
@@ -109,30 +111,28 @@ public class CatalogPanel extends JPanel {
 		});
 		searchPanel.add(clear);
 		panel.add(searchPanel);
-		
-		
-		//setup checkout window
+
+		// setup checkout window
 		check = new CheckoutFrame();
 		JButton checkOut = new JButton("Check out");
 		checkOut.setToolTipText("Open the checkout window.");
-		//show the checkout frame on button click
-		checkOut.addActionListener(new ActionListener(){
+		// show the checkout frame on button click
+		checkOut.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				check.initialize();
-		
+
 			}
 		});
 		panel.add(checkOut);
 		this.add(panel, BorderLayout.SOUTH);
-		
+
 	}
-	
-	//data somehwere in the table changed, so refresh
-	public static void update(){
+
+	// data somehwere in the table changed, so refresh
+	public static void update() {
 		((CatalogTableModel) table.getModel()).fireTableDataChanged();
-		
+
 	}
-	
-	
+
 }

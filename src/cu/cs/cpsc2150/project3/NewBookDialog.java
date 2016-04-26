@@ -30,31 +30,31 @@ public class NewBookDialog extends JDialog {
 		JPanel panel = new JPanel(new GridLayout(5, 2, 5, 5));
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		//title field
+		// title field
 		JLabel title = new JLabel("Title:", SwingConstants.CENTER);
 		panel.add(title);
 		final JTextField titleText = new JTextField();
 		panel.add(titleText);
 
-		//author field
+		// author field
 		JLabel author = new JLabel("Author:", SwingConstants.CENTER);
 		panel.add(author);
 		final JTextField authorText = new JTextField();
 		panel.add(authorText);
 
-		//genre field
+		// genre field
 		JLabel genre = new JLabel("Genre:", SwingConstants.CENTER);
 		panel.add(genre);
 		final JTextField genreText = new JTextField();
 		panel.add(genreText);
 
-		//tags field
+		// tags field
 		JLabel tags = new JLabel("Tags:", SwingConstants.CENTER);
 		panel.add(tags);
 		final JTextField tagsText = new JTextField();
 		panel.add(tagsText);
 
-		//add book to catalog on successful validation
+		// add book to catalog on successful validation
 		JButton save = new JButton("Save");
 		save.setToolTipText("Create new book from text fields and add new book to catalog.");
 		save.addActionListener(new ActionListener() {
@@ -65,7 +65,8 @@ public class NewBookDialog extends JDialog {
 						tagsText.getText());
 				BookValidifier check = new BookValidifier(newBook, null);
 
-				//upon successful validation, add this book to the dialog and update table
+				// upon successful validation, add this book to the dialog and
+				// update table
 				if (check.validate()) {
 					CatalogTableModel.getCatalog().putBook(newBook);
 

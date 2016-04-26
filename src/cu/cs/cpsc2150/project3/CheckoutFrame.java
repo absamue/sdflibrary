@@ -71,7 +71,7 @@ public class CheckoutFrame extends JFrame {
 		JLabel checked = new JLabel("Currently held books:", SwingConstants.CENTER);
 		infoPanel.add(checked);
 		
-		JLabel actions = new JLabel("Return or checkout books:", SwingConstants.CENTER);
+		JLabel actions = new JLabel("Return or checkout books in cart:", SwingConstants.CENTER);
 		infoPanel.add(actions);
 		
 		this.add(infoPanel, BorderLayout.NORTH);
@@ -84,6 +84,7 @@ public class CheckoutFrame extends JFrame {
 		//make a table contained of myUser's checked out books
 		user = new JTable(new CheckedTableModel(myUser));
 		user.setToolTipText("Double click a row to return selected book.");
+		user.getTableHeader().setReorderingAllowed(false);
 		user.addMouseListener(new MouseListener(){
 
 			//add selected book into the action table to be returned
@@ -125,6 +126,7 @@ public class CheckoutFrame extends JFrame {
 		
 		//table to hold action items
 		select = new JTable(new ActionTableModel());
+		select.getTableHeader().setReorderingAllowed(false);
 		JScrollPane right = new JScrollPane(select);
 		panel.add(right);
 		this.add(panel);
@@ -136,7 +138,7 @@ public class CheckoutFrame extends JFrame {
 		
 		
 		//checkout button, simply notifys the cart
-		JButton checkOut = new JButton("Check Out");
+		JButton checkOut = new JButton("Complete Transaction");
 		checkOut.setToolTipText("Apply all checkout actions.");
 		checkOut.addActionListener(new ActionListener(){
 			@Override
@@ -153,7 +155,7 @@ public class CheckoutFrame extends JFrame {
 		
 		
 		//open a frame containing the catalog, that allows selecting a book to check out
-		JButton addBook = new JButton("Add Book");
+		JButton addBook = new JButton("Add Book to Cart");
 		addBook.setToolTipText("Select a book to be checked out by current user.");
 		addBook.addActionListener(new ActionListener(){
 			@Override

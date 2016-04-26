@@ -26,6 +26,7 @@ public class BookDialog extends JDialog {
 	}
 
 	public void initialize() {
+		this.setResizable(false);
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		this.setSize(300, 200);
 		this.setLocationRelativeTo(null);

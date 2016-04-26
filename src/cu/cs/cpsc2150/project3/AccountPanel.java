@@ -27,6 +27,9 @@ public class AccountPanel extends JPanel {
 		//set up table of account information
 		accModel = new AccountTableModel();
 		JTable table = new JTable(accModel);
+		table.setToolTipText("Double click a row to edit or remove account.");
+		table.getTableHeader().setReorderingAllowed(false);
+		
 		table.addMouseListener(new MouseListener(){
 
 			@Override

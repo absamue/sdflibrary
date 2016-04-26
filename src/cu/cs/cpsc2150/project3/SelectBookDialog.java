@@ -19,6 +19,7 @@ public class SelectBookDialog extends JDialog {
 		super(parent, "Select Book", true);
 		this.setSize(500, 300);
 		this.setLocationRelativeTo(null);
+		this.setResizable(false);
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 
 		this.initialize();
@@ -30,9 +31,11 @@ public class SelectBookDialog extends JDialog {
 		// grab the catalog that already exists in MainFrame.
 		JTable table = new JTable(CatalogPanel.table.getModel());
 		table.setToolTipText("Select a book to add to cart, then click okay.");
+		table.getTableHeader().setReorderingAllowed(false);
+		
+		//only show available books for selection by adding row sorter
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
-		//only show available books for selection
 		rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + "Available"));
 		JScrollPane sPane = new JScrollPane(table);
 

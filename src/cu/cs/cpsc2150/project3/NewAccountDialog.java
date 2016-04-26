@@ -28,7 +28,6 @@ public class NewAccountDialog extends JDialog {
 
 	@SuppressWarnings("unchecked")
 	public void initialize() {
-		this.setResizable(false);
 		this.setSize(300, 300);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);

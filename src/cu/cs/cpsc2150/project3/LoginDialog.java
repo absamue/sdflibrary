@@ -16,7 +16,6 @@ public class LoginDialog extends JDialog {
 	}
 	
 	public void initialize(){
-		this.setResizable(false);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setAlwaysOnTop(true);
 		this.setSize(300, 150);

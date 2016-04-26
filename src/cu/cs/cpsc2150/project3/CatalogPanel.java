@@ -34,7 +34,6 @@ public class CatalogPanel extends JPanel {
 		table = new JTable(new CatalogTableModel());
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
-		table.getTableHeader().setReorderingAllowed(false);
 		table.setToolTipText("Double click a row to see book information.");
 
 		//listen for doubleclick to open book window

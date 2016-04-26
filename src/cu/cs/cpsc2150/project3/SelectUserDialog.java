@@ -25,7 +25,6 @@ public class SelectUserDialog extends JDialog {
 		super(parent, "Select User", true);
 		this.setSize(400,150);
 		this.setLocationRelativeTo(null);
-		this.setResizable(false);
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		find = null;
 	}

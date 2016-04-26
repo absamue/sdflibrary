@@ -46,7 +46,7 @@ public class CatalogPanel extends JPanel {
 					int row = table.rowAtPoint(arg0.getPoint());
 					if(row != -1){
 						Book sel = CatalogTableModel.getCatalog().getFromTitle((String) table.getValueAt(row, 0));
-						bookDialog = new BookDialog(parent, sel);
+						CatalogPanel.this.bookDialog = new BookDialog(parent, sel);
 						CatalogPanel.this.revalidate();
 					}
 				}
@@ -71,12 +71,12 @@ public class CatalogPanel extends JPanel {
 		JScrollPane sPane = new JScrollPane(table);
 		this.add(sPane);	
 		
-		TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
+		final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
 		//Search panel
 		JLabel searchLabel = new JLabel("Search:");
 		searchPanel.add(searchLabel);
-		JTextField searchText = new JTextField();
+		final JTextField searchText = new JTextField();
 		searchText.setPreferredSize(new Dimension(431,27));
 		searchPanel.add(searchText);
 		

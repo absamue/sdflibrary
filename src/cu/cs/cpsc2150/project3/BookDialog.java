@@ -36,7 +36,7 @@ public class BookDialog extends JDialog {
 		// title info
 		JLabel title = new JLabel("Title:", SwingConstants.CENTER);
 		panel.add(title);
-		JTextField titleText = new JTextField();
+		final JTextField titleText = new JTextField();
 		titleText.setText(myBook.myTitle);
 		titleText.setHorizontalAlignment(JTextField.CENTER);
 		if (!MainFrame.getActive().staff)
@@ -46,7 +46,7 @@ public class BookDialog extends JDialog {
 		// author info
 		JLabel author = new JLabel("Author:", SwingConstants.CENTER);
 		panel.add(author);
-		JTextField authorText = new JTextField();
+		final JTextField authorText = new JTextField();
 		authorText.setText(myBook.myAuthors);
 		authorText.setHorizontalAlignment(JTextField.CENTER);
 		if (!MainFrame.getActive().staff)
@@ -56,7 +56,7 @@ public class BookDialog extends JDialog {
 		// genre info
 		JLabel genre = new JLabel("Genre:", SwingConstants.CENTER);
 		panel.add(genre);
-		JTextField genreText = new JTextField();
+		final JTextField genreText = new JTextField();
 		genreText.setText(myBook.myGenre);
 		genreText.setHorizontalAlignment(JTextField.CENTER);
 		if (!MainFrame.getActive().staff)
@@ -66,7 +66,7 @@ public class BookDialog extends JDialog {
 		// tag info
 		JLabel tags = new JLabel("Tags:", SwingConstants.CENTER);
 		panel.add(tags);
-		JTextField tagsText = new JTextField();
+		final JTextField tagsText = new JTextField();
 		tagsText.setText(myBook.myTags);
 		tagsText.setHorizontalAlignment(JTextField.CENTER);
 		if (!MainFrame.getActive().staff)

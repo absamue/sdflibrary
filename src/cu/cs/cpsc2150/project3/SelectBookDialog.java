@@ -28,7 +28,7 @@ public class SelectBookDialog extends JDialog {
 		JPanel panel = new JPanel(new BorderLayout());
 
 		// grab the catalog that already exists in MainFrame.
-		JTable table = new JTable(CatalogPanel.table.getModel());
+		final JTable table = new JTable(CatalogPanel.table.getModel());
 		table.setToolTipText("Select a book to add to cart, then click okay.");
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);

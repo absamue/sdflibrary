@@ -33,25 +33,25 @@ public class NewBookDialog extends JDialog {
 		//title field
 		JLabel title = new JLabel("Title:", SwingConstants.CENTER);
 		panel.add(title);
-		JTextField titleText = new JTextField();
+		final JTextField titleText = new JTextField();
 		panel.add(titleText);
 
 		//author field
 		JLabel author = new JLabel("Author:", SwingConstants.CENTER);
 		panel.add(author);
-		JTextField authorText = new JTextField();
+		final JTextField authorText = new JTextField();
 		panel.add(authorText);
 
 		//genre field
 		JLabel genre = new JLabel("Genre:", SwingConstants.CENTER);
 		panel.add(genre);
-		JTextField genreText = new JTextField();
+		final JTextField genreText = new JTextField();
 		panel.add(genreText);
 
 		//tags field
 		JLabel tags = new JLabel("Tags:", SwingConstants.CENTER);
 		panel.add(tags);
-		JTextField tagsText = new JTextField();
+		final JTextField tagsText = new JTextField();
 		panel.add(tagsText);
 
 		//add book to catalog on successful validation

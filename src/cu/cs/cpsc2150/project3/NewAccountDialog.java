@@ -39,38 +39,38 @@ public class NewAccountDialog extends JDialog {
 		// username
 		JLabel uname = new JLabel("Username:", SwingConstants.CENTER);
 		panel.add(uname);
-		JTextField unameText = new JTextField();
+		final JTextField unameText = new JTextField();
 		panel.add(unameText);
 
 		// password
 		JLabel pword = new JLabel("Password:", SwingConstants.CENTER);
 		panel.add(pword);
-		JTextField pwordText = new JTextField();
+		final JTextField pwordText = new JTextField();
 		panel.add(pwordText);
 
 		//account type
 		JLabel type = new JLabel("Type:", SwingConstants.CENTER);
 		panel.add(type);
 		@SuppressWarnings("rawtypes")
-		JComboBox typeText = new JComboBox(staffOpt);
+		final JComboBox typeText = new JComboBox(staffOpt);
 		panel.add(typeText);
 
 		// name
 		JLabel name = new JLabel("Name:", SwingConstants.CENTER);
 		panel.add(name);
-		JTextField nameText = new JTextField();
+		final JTextField nameText = new JTextField();
 		panel.add(nameText);
 
 		// email
 		JLabel email = new JLabel("Email:", SwingConstants.CENTER);
 		panel.add(email);
-		JTextField emailText = new JTextField();
+		final JTextField emailText = new JTextField();
 		panel.add(emailText);
 
 		// phone
 		JLabel phone = new JLabel("Phone #:", SwingConstants.CENTER);
 		panel.add(phone);
-		JTextField phoneText = new JTextField();
+		final JTextField phoneText = new JTextField();
 		panel.add(phoneText);
 
 		// update selected account, except admin which is absolute

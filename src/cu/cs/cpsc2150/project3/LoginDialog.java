@@ -22,19 +22,19 @@ public class LoginDialog extends JDialog {
 		this.setLocationRelativeTo(null);
 		
 		//grid panel
-		JPanel panel = new JPanel(new GridLayout(3,2,10,10));
+		final JPanel panel = new JPanel(new GridLayout(3,2,10,10));
 		panel.setBorder(new EmptyBorder(5,5,5,5));
 		
 		//username field
 		JLabel userLabel = new JLabel("User", SwingConstants.CENTER);
 		panel.add(userLabel);
-		JTextField userText = new JTextField();
+		final JTextField userText = new JTextField();
 		panel.add(userText);
 		
 		//password field
 		JLabel passwordLabel = new JLabel("Password", SwingConstants.CENTER);
 		panel.add(passwordLabel);
-		JPasswordField passwordText = new JPasswordField();
+		final JPasswordField passwordText = new JPasswordField();
 		panel.add(passwordText);
 		
 		

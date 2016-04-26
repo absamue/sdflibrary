@@ -42,7 +42,7 @@ public class SelectUserDialog extends JDialog {
 		JPanel input = new JPanel(new GridLayout(1,3,5,5));
 		JLabel id = new JLabel("ID:", SwingConstants.RIGHT);
 		input.add(id);
-		JTextField idText = new JTextField();
+		final JTextField idText = new JTextField();
 		input.add(idText);
 		
 		JButton okay = new JButton("Okay");

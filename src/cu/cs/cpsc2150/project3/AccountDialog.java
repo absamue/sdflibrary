@@ -40,20 +40,20 @@ public class AccountDialog extends JDialog {
 		// username
 		JLabel uname = new JLabel("Username:", SwingConstants.CENTER);
 		panel.add(uname);
-		JTextField unameText = new JTextField(myAccount.myUsername);
+		final JTextField unameText = new JTextField(myAccount.myUsername);
 		panel.add(unameText);
 
 		// password
 		JLabel pword = new JLabel("Password:", SwingConstants.CENTER);
 		panel.add(pword);
-		JTextField pwordText = new JTextField(myAccount.myPassword);
+		final JTextField pwordText = new JTextField(myAccount.myPassword);
 		panel.add(pwordText);
 
 		// account type
 		JLabel type = new JLabel("Type:", SwingConstants.CENTER);
 		panel.add(type);
 		@SuppressWarnings("rawtypes")
-		JComboBox typeText = new JComboBox(staffOpt);
+		final JComboBox typeText = new JComboBox(staffOpt);
 		if (!myAccount.staff)
 			typeText.setSelectedIndex(1);
 		panel.add(typeText);
@@ -61,19 +61,19 @@ public class AccountDialog extends JDialog {
 		// name
 		JLabel name = new JLabel("Name:", SwingConstants.CENTER);
 		panel.add(name);
-		JTextField nameText = new JTextField(myAccount.myName);
+		final JTextField nameText = new JTextField(myAccount.myName);
 		panel.add(nameText);
 
 		// email
 		JLabel email = new JLabel("Email:", SwingConstants.CENTER);
 		panel.add(email);
-		JTextField emailText = new JTextField(myAccount.myEmail);
+		final JTextField emailText = new JTextField(myAccount.myEmail);
 		panel.add(emailText);
 
 		// phone
 		JLabel phone = new JLabel("Phone #:", SwingConstants.CENTER);
 		panel.add(phone);
-		JTextField phoneText = new JTextField(myAccount.myPhone);
+		final JTextField phoneText = new JTextField(myAccount.myPhone);
 		panel.add(phoneText);
 
 		// update selected account, except admin which is absolute

@@ -68,7 +68,7 @@ public class NewAccountDialog extends JDialog {
 		panel.add(emailText);
 
 		// phone
-		JLabel phone = new JLabel("Phone #:", SwingConstants.CENTER);
+		JLabel phone = new JLabel("10 Digit Phone #:", SwingConstants.CENTER);
 		panel.add(phone);
 		final JTextField phoneText = new JTextField();
 		panel.add(phoneText);

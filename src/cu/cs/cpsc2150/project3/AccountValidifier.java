@@ -78,11 +78,13 @@ public class AccountValidifier implements Validifier {
 		}
 
 		// check phone number
-		String PHONE_REGEX = "^[0-9\\-]*$";
-		if (!nwAccount.myPhone.matches(PHONE_REGEX)) {
+		String PHONE_REGEX = "\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}";
+		String PHONE_REGEX2 = "\\d{10}";
+		if (!nwAccount.myPhone.matches(PHONE_REGEX2) && !nwAccount.myPhone.matches(PHONE_REGEX)) {
 			error = "The phone number entered is not in a valid format.";
 			return false;
 		}
+	
 
 		return true;
 	}

@@ -26,7 +26,7 @@ public class AccountPanel extends JPanel {
 
 		//set up table of account information
 		accModel = new AccountTableModel();
-		JTable table = new JTable(accModel);
+		final JTable table = new JTable(accModel);
 		table.addMouseListener(new MouseListener(){
 
 			@Override

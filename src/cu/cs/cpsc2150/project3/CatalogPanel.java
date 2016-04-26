@@ -21,9 +21,10 @@ public class CatalogPanel extends JPanel {
 	BookDialog bookDialog;
 	CheckoutFrame check;
 	static JTable table;
+	Frame myParent;
 	
 	public CatalogPanel(Frame parent){
-		
+		myParent = parent;
 		
 		this.setLayout(new BorderLayout());
 		JPanel panel = new JPanel(new GridLayout(2,1,5,5));
@@ -46,7 +47,7 @@ public class CatalogPanel extends JPanel {
 					int row = table.rowAtPoint(arg0.getPoint());
 					if(row != -1){
 						Book sel = CatalogTableModel.getCatalog().getFromTitle((String) table.getValueAt(row, 0));
-						CatalogPanel.this.bookDialog = new BookDialog(parent, sel);
+						CatalogPanel.this.bookDialog = new BookDialog(CatalogPanel.this.myParent, sel);
 						CatalogPanel.this.revalidate();
 					}
 				}
